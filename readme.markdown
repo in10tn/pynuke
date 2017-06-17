@@ -37,7 +37,7 @@ Note: Google appengine is not supported.
 
 ### Installing
 
-* it's really simply install pynuke, first install web2py and put the pynuke code in a folder called init inside applications. 
+* it's really simply install pynuke, first [start web2py](http://www.web2py.com/books/default/chapter/29/03/overview#Startup) and put the pynuke code in a folder called init inside applications folder. 
 
 * Too, you must move the file "root move_to_root_routes.py" in pynuke folder to root of web2py folder and rename to routes.py
 
