@@ -186,7 +186,7 @@ class JsTree(object):
         from gluon.utils import web2py_uuid
         element_id = web2py_uuid()
 
-        from globals import Response, Storage
+        from gluon.globals import Response, Storage
         _response = Response()
         _response._view_environment = current.globalenv.copy()
         _response._view_environment.update(
