@@ -35,37 +35,11 @@ It's simple, easy to use and has a great potential. It's currently in beta.
 
 Note: Google appengine is not supported.
 
-### Preparing the installation package from source code
-
-Please download the source code, unzip it and package it into a file w2p
-
-
-* Download [the last zip file with sources](https://bitbucket.org/pynukedev/pynuke/get/default.tar.gz "Format tar.gz") and unzip to a folder.
-
-    `wget https://bitbucket.org/pynukedev/pynuke/get/default.tar.gz -O ./pynuke.tar.gz`
-      
-    `gzip -dc pynuke.tar.gz | tar -x`
-    
-
-    `#change to folder`
-    
-    `cd pynukedev-pynuke-commit (change commit for commit id)`
-
-
-
-
-* Compress all files in format "Tar.gz" in a file called pynuke.w2p
-
-
-    `tar czf ./pynuke.w2p ./ --exclude=*.tar --exclude=*.w2p`
-
-
-
 ### Installing
 
-* Upload the file pynuke.w2p from web2py administrator using the mechanism of installing new applications and call the application "init", in this way the default boot application will be Pynuke.
+* it's really simply install pynuke, first install web2py and put the pynuke code in a folder called init inside applications. 
 
-* You must move the file "root move_to_root_routes.py" in pynuke folder to root of web2py folder and rename to routes.py
+* Too, you must move the file "root move_to_root_routes.py" in pynuke folder to root of web2py folder and rename to routes.py
 
 * Access the web site, you should see the home page in pynuke, press the login button
 
