@@ -1,0 +1,20 @@
+{{extend layoutsrc}}
+<h4>{{=T("Upload plugin")}}</h4>
+{{=form.custom.begin}}                          
+<table>
+    <tbody>
+        <tr>
+            <td><label class="control-label" id="YAML_File__label" for="YAML_File">{{=form.custom.label['YAML_File']}}</label></td>
+            <td>{{=form.custom.widget.YAML_File}}</td>
+        </tr>
+</table>
+<h4>{{=T("Or select a plugin to install")}}</h4>
+<table>
+    <tbody>
+        <tr>
+            <td><label class="control-label" id="download_label" for="download">{{=form.custom.label['download']}}</label></td>
+            <td>{{=form.custom.widget.download}}</td>
+        </tr>
+</table>
+{{=form.custom.submit}}
+{{=form.custom.end}}

@@ -1,0 +1,21 @@
+<script type="text/javascript">
+    $(function() {
+        $("td.w2p_fc").each(function() {
+            var comment = $(this).html();
+            var trl = this.parentNode.firstChild;
+            if (comment) {
+                var text = $(trl).html;
+                $(this).html('');
+                $(trl).append('&nbsp;<i class="glyphicon glyphicon-question-sign pull-right"></i>');
+                $(trl).children('i').attr('title', comment);
+                $(trl).children('i').tooltip({
+                    placement : 'top',
+                    html : true,
+                    trigger : 'click',
+                    container : 'body'
+                });
+            }
+        });
+    });
+</script>
+{{=formsettings}}

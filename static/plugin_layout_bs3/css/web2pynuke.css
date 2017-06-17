@@ -1,0 +1,99 @@
+/* ------------------------------------------
+@import url('../typicons_kit/css/typicons.css');
+CSS 
+-------------------------------------------- */
+/*
+*/
+.controlpanel {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #ADADAD;
+    border-style: solid;
+    border-width: 0 0 2px;
+}
+.cpbutton {
+    width: 75px;
+}
+.SubHead, .SubSubHead {
+    color: #000000;
+    font-size: 12px;
+}
+.SubHead {
+    font-weight: bold;
+}
+
+/* ICONS: */
+a.button16 span.icon.edit {
+    background-position: 0 -48px;
+}
+a.button16 span.icon {
+    background-image: url("../images/out16.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 16px;
+    margin: auto 2px auto auto;
+    position: relative;
+    width: 16px;
+}
+
+.pages{margin:0px 0}
+
+/* .sidebars ul {
+    list-style: disc inside none;
+}*/
+div#popular-tags ul {
+    display: block;
+    list-style: none outside none;
+    margin-left: 0em;
+}
+div#popular-tags ul li {
+    float: left;
+    padding: 3px;
+}
+.tagcloud_0 {
+    font-size: xx-small;
+}
+.tagcloud_1 {
+    font-size: small;
+}
+.tagcloud_2 {
+    font-size: medium;
+}
+.tagcloud_3 {
+    font-size: large;
+}
+.tagcloud_4 {
+    font-size: xx-large;
+}
+.tagcloud_5 {
+    font-size: xx-large;
+}
+ol, ul {list-style-position:outside; margin-left:0px}
+.btn-label {position: relative;left: -12px;display: inline-block;padding: 6px 12px;background: rgba(0,0,0,0.15);border-radius: 3px 0 0 3px;}
+.btn-labeled {padding-top: 0;padding-bottom: 0;}
+.btn { margin-bottom:10px; }
+.ctrmodule { 
+	max-width: 100px;
+	float:left;
+	position: absolute;
+	z-index:998;
+	-webkit-transition: all 2s ease-out 0s;
+  	-moz-transition: all 2s ease-out 0s;
+  	-ms-transition: all 2s ease-out 0s;
+  	-o-transition: all 2s ease-out 0s;
+  	transition: all 2s ease-out 0s;
+	
+  -webkit-opacity: 0.25;
+  -moz-opacity: 0.25;
+  opacity: 0.25;
+
+}
+.ctrmodule:hover {
+  -webkit-opacity: 1;
+  -moz-opacity: 1;
+  opacity: 1;
+} 

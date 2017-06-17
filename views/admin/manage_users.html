@@ -1,0 +1,20 @@
+{{extend 'layout.html'}}
+<h3>Manage Users</h3>
+{{if not viewingall:}}
+    <p><a class="btn btn-small btn-success" href="{{=URL(a='init',c='admin', f='manage_users',args='viewall',user_signature=True)}}"> 
+    <i class="icon-plus-sign icon-white"></i>
+    <strong> {{=T('View all users')}} </strong> 
+    </a></p>            
+{{else:}}
+    <p>
+        <a class="btn btn-small btn-success" href="{{=URL(a='init',c='admin', f='manage_users',user_signature=True)}}"> 
+            <i class="icon-plus-sign icon-white"></i>
+            <strong> {{=T('View verified users')}} </strong> 
+        </a>
+        <a class="btn btn-small btn-danger" href="javascript:void(0)" onclick='confirma();'> 
+            <i class="icon-minus-sign icon-white"></i>
+            <strong> {{=T('Delete all unauthorized users')}} </strong> 
+        </a>
+    </p>            
+{{pass}}
+{{=form}}

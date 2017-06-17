@@ -1,0 +1,893 @@
+{{extend 'layout.html'}}
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery('textarea[name=keywords]').css('height', '75px');
+    })
+</script>
+<script type="text/javascript">
+    function test_mail(){
+        ajax('{{=URL(c="admin",f="test_mail")}}', ['mail_settings_server', 'mail_settings_sender', 'mail_settings_TLS', 'mail_settings_login', 'mail_settings_logging', 'mail_settings_SSL'], 'shadow_clone', ':eval');
+    }
+	function proccess_queue_now(){
+        ajax('{{=URL(c="admin",f="proccess_queue")}}', ['mail_settings_server', 'mail_settings_sender', 'mail_settings_TLS', 'mail_settings_login', 'mail_settings_logging', 'mail_settings_SSL'], 'shadow_clone2', ':eval');
+    }
+	
+</script>
+<script type="text/javascript">
+    $(function(){
+        $("td.w2p_fc").each(function(){
+            var comment = $(this).html();
+            var trl = this.parentNode.cells[0];
+            if (comment) {
+                var text = $(trl).html;
+                $(this).html('');
+                $(trl).append('&nbsp;<i class="glyphicon glyphicon-question-sign pull-right" style="cursor: pointer; cursor: hand;"></i>');
+                $(trl).children('i').attr('title', comment);
+                $(trl).children('i').tooltip({
+                    placement: 'top',
+                    html: true,
+                    trigger: 'click',
+                    container: 'body'
+                });
+            }
+        });
+    });
+</script>
+{{=H4(T('Site settings'))}}
+<br/>
+{{=form.custom.begin}}
+<ul id="myTab" class="nav nav-tabs">
+    <!-- Give href an ID value of corresponding "tabs-content" <li>'s -->
+    <li class="active">
+        <a data-toggle="tab" href="#basicsettings">{{=T('Basic settings')}}</a>
+    </li>
+    <li class="">
+        <a data-toggle="tab" href="#advancedsettings">{{=T('Advanced settings')}}</a>
+    </li>
+    <li class="">
+        <a data-toggle="tab" href="#useraccountssettings">{{=T('User accounts settings')}}</a>
+    </li>
+    <li class="">
+        <a data-toggle="tab" href="#upgradepynuke">{{=T('Upgrade Pynuke')}}</a>
+    </li>
+</ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane active" id="basicsettings">
+        <div class="accordion" id="accordion1">
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#sitedetails">{{=H5(T("Site details"))}} </a>
+                </div>
+                <!-- agregar in para desplegar por defecto -->
+                <div id="sitedetails" class="accordion-body collapse in">
+                    <div class="accordion-inner">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label>
+                                            {{=form.custom.label['site_title']}}
+                                        </label>
+                                    </td>
+                                    <td class="w2p_fw">
+                                        {{=form.custom.widget.site_title}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.site_title}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="pages_name__label" for="pages_name">
+                                            {{=form.custom.label['site_description']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.site_description}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.site_description}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="pages_name__label" for="pages_name">
+                                            {{=form.custom.label['keywords']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.keywords}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.keywords}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="pages_name__label" for="pages_name">
+                                            {{=form.custom.label['copyright']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.copyright}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.copyright}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#sitemarketing">{{=H5(T("Site marketing"))}} </a>
+                </div>
+                <div id="sitemarketing" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="link_logo__label" for="link_logo">
+                                            {{=form.custom.label['google_analytics_id']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.google_analytics_id}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.google_analytics_id}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="link_logo__label" for="link_logo">
+                                            {{=form.custom.label['author']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.author}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.author}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#appearance">{{=H5(T("Appearance"))}} </a>
+                </div>
+                <div id="appearance" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['img_logo']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.img_logo}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.img_logo}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="link_logo__label" for="link_logo">
+                                            {{=form.custom.label['link_logo']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.link_logo}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.link_logo}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="pages_name__label" for="pages_name">
+                                            {{=form.custom.label['bootstrap_brand']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.bootstrap_brand}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.bootstrap_brand}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="plugin_layout_default__label" for="plugin_layout_default">
+                                            {{=form.custom.label['plugin_layout_default']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.plugin_layout_default}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.plugin_layout_default}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="plugin_container_default__label" for="plugin_container_default">
+                                            {{=form.custom.label['plugin_container_default']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.plugin_container_default}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.plugin_container_default}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane" id="advancedsettings">
+        <div class="accordion" id="accordion2">
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#pagemanagement">{{=H5(T("Page Management"))}} </a>
+                </div>
+                <div id="pagemanagement" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['startpageid']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.startpageid}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.startpageid}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#securitysettings">{{=H5(T("Security settings"))}} </a>
+                </div>
+                <div id="securitysettings" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['portal_admin']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.portal_admin}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.portal_admin}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#sslsettings">{{=H5(T("SSL Settings"))}} </a>
+                </div>
+                <div id="sslsettings" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['force_SSL']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.force_SSL}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.force_SSL}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#othersettings">{{=H5(T("Other settings"))}} </a>
+                </div>
+                <div id="othersettings" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['migrate']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.migrate}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.migrate}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#interfacesettings">{{=H5(T("Interface Settings"))}} </a>
+                </div>
+                <div id="interfacesettings" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="cssclass_btn_small__label" for="cssclass_icon_edit">
+                                            {{=form.custom.label['cssclass_icon_edit']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.cssclass_icon_edit}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.cssclass_icon_edit}}
+                                    </td>
+                                </tr>
+								<tr>
+                                    <td class="w2p_fl">
+                                        <label id="cssclass_icon_remove__label" for="cssclass_icon_remove">
+                                            {{=form.custom.label['cssclass_icon_remove']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.cssclass_icon_remove}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.cssclass_icon_remove}}
+                                    </td>
+                                </tr>
+								<tr>
+                                    <td class="w2p_fl">
+                                        <label id="cssclass_button_small__label" for="cssclass_button_small">
+                                            {{=form.custom.label['cssclass_button_small']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.cssclass_button_small}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.cssclass_button_small}}
+                                    </td>
+                                </tr>
+								<tr>
+                                    <td class="w2p_fl">
+                                        <label id="cssclass_button_small__label" for="cssclass_button_small">
+                                            {{=form.custom.label['cssclass_button_extrasmall']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.cssclass_button_extrasmall}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.cssclass_button_extrasmall}}
+                                    </td>
+                                </tr>
+								<tr>
+                                    <td class="w2p_fl">
+                                        <label id="cssclass_button_warning__label" for="cssclass_button_warning">
+                                            {{=form.custom.label['cssclass_button_warning']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.cssclass_button_warning}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.cssclass_button_warning}}
+                                    </td>
+                                </tr>
+								<tr>
+                                    <td class="w2p_fl">
+                                        <label id="cssclass_btn_small__label" for="cssclass_icon_edit">
+                                            {{=form.custom.label['cssclass_button_danger']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.cssclass_button_danger}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.cssclass_button_danger}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+			<div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#performancemanagement">{{=H5(T("Performance"))}} </a>
+                </div>
+                <div id="performancemanagement" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['compress_css_files']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.compress_css_files}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.compress_css_files}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['compress_js_files']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.compress_js_files}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.compress_js_files}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#mailsettings">{{=H5(T("Mail settings"))}} </a>
+                </div>
+                <div id="mailsettings" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <table id="tablemailsettings">
+                            <tbody>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['mail_settings_server']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.mail_settings_server}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.mail_settings_server}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['mail_settings_sender']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.mail_settings_sender}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.mail_settings_sender}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['mail_settings_allmessageswithcopyto']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.mail_settings_allmessageswithcopyto}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.mail_settings_allmessageswithcopyto}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['mail_settings_TLS']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.mail_settings_TLS}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.mail_settings_TLS}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['mail_settings_SSL']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.mail_settings_SSL}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.mail_settings_SSL}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['mail_settings_login']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.mail_settings_login}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.mail_settings_login}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['mail_settings_logging']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.mail_settings_logging}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.mail_settings_logging}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['mail_maximo_num_envios_x_sendqueue']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.mail_maximo_num_envios_x_sendqueue}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.mail_maximo_num_envios_x_sendqueue}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=T('Test email settings')}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-mini" onclick="test_mail();" href="javascript:void(0);"><i class=" icon-thumbs-up"></i><strong>{{=T('Test email settings')}}</strong></a>
+                                        <span id='shadow_clone'></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=T('Proccess Queue now')}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-mini" onclick="proccess_queue_now();" href="javascript:void(0);"><i class=" icon-thumbs-up"></i><strong>{{=T('Call to scheduled task smtp')}}</strong></a>
+                                        <span id='shadow_clone2'></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane" id="useraccountssettings">
+        <div class="accordion" id="accordion3">
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#registrationsettings">{{=H5(T("Registration settings"))}} </a>
+                </div>
+                <div id="registrationsettings" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['registration_type']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.registration_type}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.registration_type}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['use_mail_as_username']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.use_mail_as_username}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.use_mail_as_username}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['message_onregister']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.message_onregister}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.message_onregister}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['message_onvalidation']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.message_onvalidation}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.message_onvalidation}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#authenticationsettings">{{=H5(T("Authentication settings"))}} </a>
+                </div>
+                <div id="authenticationsettings" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['recaptcha_publickey']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.recaptcha_publickey}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.recaptcha_publickey}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['recaptcha_privatekey']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.recaptcha_privatekey}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.recaptcha_privatekey}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['recaptcha_options']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.recaptcha_options}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.recaptcha_options}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['auth_require_recaptcha']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.auth_require_recaptcha}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.auth_require_recaptcha}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['auth_register_require_recaptcha']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.auth_register_require_recaptcha}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.auth_register_require_recaptcha}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['auth_retrieve_username_require_recaptcha']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.auth_retrieve_username_require_recaptcha}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.auth_retrieve_username_require_recaptcha}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['auth_retrieve_password_require_recaptcha']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.auth_retrieve_password_require_recaptcha}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.auth_retrieve_password_require_recaptcha}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['use_janrain']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.use_janrain}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.use_janrain}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['redirectafterlogin']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.redirectafterlogin}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.redirectafterlogin}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['redirectafterregister']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.redirectafterregister}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.redirectafterregister}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=form.custom.label['redirectafterlogout']}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=form.custom.widget.redirectafterlogout}}
+                                    </td>
+                                    <td class="w2p_fc">
+                                        {{=form.custom.comment.redirectafterlogout}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane" id="upgradepynuke">
+        <div class="accordion" id="accordion4">
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4" href="#acupgradepynuke">{{=H5(T("Upgrade Pynuke"))}} </a>
+                </div>
+                <div id="acupgradepynuke" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=T('Pynuke current version')}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=currentversion}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                            {{=T('Pynuke last version available')}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=lastversion}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl">
+                                        <label id="img_logo__label" for="img_logo">
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{=upgrade}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{=form.custom.submit}}
+{{=form.custom.end}}
+{{#=BEAUTIFY(form.errors)}}

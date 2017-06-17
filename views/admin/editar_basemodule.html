@@ -1,0 +1,18 @@
+{{extend 'layout.html'}}
+<h4>{{=T('Edit Module')}} {{=obj_basemodule.friendlyname}} </h4>
+<a class="btn btn-mini btn-warning" href="{{=urlreturn}}"> 
+    <i class="glyphicon glyphicon-chevron-left"></i><strong>{{=T('Return')}}</strong>
+</a>
+<ul id="myTab" class="nav nav-tabs">
+  <!-- Give href an ID value of corresponding "tabs-content" <li>'s -->
+  <li class="active"><a data-toggle="tab" href="#info">Plugin Info</a></li>
+  <li class=""><a data-toggle="tab" href="#definitions">Definitions</a></li>
+</ul>
+<div id="myTabContent" class="tab-content"> 
+    <div class="tab-pane active" id="info">            
+        {{=form}}
+    </div>                
+    <div class="tab-pane" id="definitions">           
+        {{=moduledefinitions}}        
+    </div>
+</div>

@@ -1,0 +1,199 @@
+pages:
+  page_1:    
+    name: Home
+    isvisible: True     
+    slug: home
+    layoutsrc: 3
+    modules:
+      module_1: 
+        type: htmltext
+        moduleorder: 1
+        panename: 12
+        moduletitle: <i class="fa fa-check  fa-2x"></i> All ready
+        html: Pynuke is installed correctly.You can <a href="/init/default/user/login?_next=/init/default/page/home">login now</a> with the user <em><strong>admin</strong></em> and password <strong><em>admin</em></strong> to manage your new site.
+        containersrc: 7
+      module_2: 
+        type: htmltext
+        moduleorder: 1
+        panename: 13
+        moduletitle: <i class="fa fa-comments-o  fa-2x"></i> Free &amp; Open Source
+        html: Pynuke is free and open source, we encourage you to participate! Through the <a href="https://bitbucket.org/pynukedev"> code repositories </a> in bitbucket you can communicate errors, suggestions, download the latest source development etc.
+        containersrc: 7
+      module_3: 
+        type: htmltext
+        moduleorder: 1
+        panename: 14
+        moduletitle: <i class="fa fa-thumbs-o-up  fa-2x"></i> Easy to Use
+        html:  Build your website online, from the browser, using an easy and intuitive interface.
+        containersrc: 7
+      module_4: 
+        type: htmltext
+        moduleorder: 1
+        containersrc: 11
+        panename: 10
+        moduletitle: Banner
+        html: |
+            <!-- Carousel
+            ================================================== -->
+            <div class="carousel slide" id="myCarousel">
+            <div class="carousel-inner">
+            <div class="item active"><img src="http://lorempixel.com/1280/1024/abstract/1/" />
+            <div class="container">
+            <div class="carousel-caption">
+            <h1>Example headline.</h1>
+            
+            <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <a class="btn btn-large btn-primary" href="#">Sign up today</a></div>
+            </div>
+            </div>
+            
+            <div class="item"><img alt="" src="http://lorempixel.com/1280/1024/abstract/6/" />
+            <div class="container">
+            <div class="carousel-caption">
+            <h1>Another example headline.</h1>
+            
+            <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <a class="btn btn-large btn-primary" href="#">Learn more</a></div>
+            </div>
+            </div>
+            
+            <div class="item"><img alt="" src="http://lorempixel.com/1280/1024/abstract/7/" />
+            <div class="container">
+            <div class="carousel-caption">
+            <h1>One more for good measure.</h1>
+            
+            <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <a class="btn btn-large btn-primary" href="#">Browse gallery</a></div>
+            </div>
+            </div>
+            </div>
+            <a class="left carousel-control" data-slide="prev" href="#myCarousel">&lsaquo;</a> <a class="right carousel-control" data-slide="next" href="#myCarousel">&rsaquo;</a></div>
+            <!-- /.carousel -->
+        
+  page_2:
+    name: Site settings
+    isvisible: True
+    c: admin
+    signature: True
+    f: site_settings
+    slug: site-settings    
+    admin_page: True
+    host_page: False
+    issecure: False
+  page_3:
+    name: Pages
+    isvisible: True
+    c: admin
+    signature: True
+    f: pages
+    slug: pages    
+    admin_page: True
+    host_page: False
+  page_4:
+    name: Users
+    a: 
+    isvisible: True
+    c: admin
+    signature: True
+    f: manage_users
+    slug: users    
+    admin_page: True
+    host_page: False
+  page_5:
+    name: Groups
+    isvisible: True
+    c: admin
+    signature: True
+    f: manage_groups
+    slug: groups    
+    admin_page: True
+    host_page: False
+  page_6:
+    name: Plugins
+    isvisible: True
+    c: admin
+    signature: True
+    f: plugins
+    slug: plugins    
+    admin_page: True
+    host_page: False
+  page_7:
+    a: 
+    name: Layouts
+    isvisible: True
+    c: admin
+    signature: True
+    f: layouts
+    slug: layouts    
+    admin_page: True
+    host_page: False
+  page_8:
+    a: 
+    name: Containers
+    isvisible: True
+    c: admin
+    signature: True
+    f: containers
+    slug: containers    
+    admin_page: True
+    host_page: False
+  page_9:
+    a: 
+    name: Redirects 301
+    isvisible: True
+    c: admin
+    signature: True
+    f: redirects_301
+    slug: redirects    
+    admin_page: True
+    host_page: False
+  page_10:
+    a: 
+    name: Site Log
+    isvisible: True
+    c: admin
+    signature: False
+    f: sitelog
+    slug: sitelog    
+    admin_page: True
+    host_page: False
+  page_11:
+    a: 
+    name: Event Log
+    isvisible: True
+    c: admin
+    signature: False
+    f: eventlog
+    slug: eventlog    
+    admin_page: True
+    host_page: False
+  page_12:
+    a: 
+    name: Recycle bin
+    isvisible: True
+    c: admin
+    signature: True
+    f: recycle_bin
+    slug: recycle-bin    
+    admin_page: True
+    host_page: False
+  page_13:
+    name: Web2py Admin
+    isvisible: True
+    a: admin
+    c: default
+    signature: True
+    f: site
+    admin_page: False    
+    host_page: True
+  page_14:
+    name: Database
+    isvisible: True
+    a: 
+    c: appadmin
+    signature: True
+    f: index
+    slug:     
+    admin_page: False
+    host_page: True
+    issecure: True

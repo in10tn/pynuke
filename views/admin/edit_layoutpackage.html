@@ -1,0 +1,27 @@
+{{extend settings.layoutsrc}} 
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery('input[name=layoutsrc]').css('width','300px');
+        });
+</script>
+<h4>Edit Layout Package</h4>
+<a class="btn btn-mini btn-warning" href="{{=URL(c='admin',f='edit_package',args=[obj_layoutpackage.packageid])}}"> 
+    <i class="glyphicon glyphicon-chevron-left"></i><strong>{{=T('Return')}}</strong>
+</a>
+<ul id="myTab" class="nav nav-tabs">
+    <li class="active">
+        <a data-toggle="tab" href="#layout">Layout Package</a>
+    </li>
+    <li class="">
+        <a data-toggle="tab" href="#panes">Layouts</a>
+    </li>
+</ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane active" id="layout">
+        {{=form}}        
+    </div>
+    <div class="tab-pane" id="panes">         
+        {{=tablelayouts}}              
+    </div>
+</div>
+

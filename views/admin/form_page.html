@@ -1,0 +1,285 @@
+{{if settings.layoutsrc != None:}}
+    {{extend settings.layoutsrc}} 
+{{pass}}
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery('textarea[id=pages_description]').css('height','80px');        
+        jQuery('textarea[id=pages_keywords]').css('height','80px');
+        });
+</script>
+<script type="text/javascript">
+    $(function() {
+        $("td.w2p_fc").each(function() {
+            var comment = $(this).html();
+            var trl = this.parentNode.cells[0];
+            if (comment) {
+                var text = $(trl).html;
+                $(this).html('');
+                $(trl).append('&nbsp;<i class="glyphicon glyphicon-question-sign pull-right" style="cursor: pointer; cursor: hand;"></i>');
+                $(trl).children('i').attr('title', comment);
+                $(trl).children('i').tooltip({
+                    placement : 'top',
+                    html : true,
+                    trigger : 'click',
+                    container : 'body'
+                });
+            }
+        });
+    });
+</script>
+<script>
+    function confirmacion(recno) {
+        pageid = '{{=pageid}}';
+        var answer = confirm("Eliminar Pagina? " + pageid )        
+        if (answer){                                    
+           ajax("{{=URL(c='admin',f='page_delete',vars={'pageid':pageid})}}", [],':eval');
+        }
+        };    
+</script>
+<h4>{{=title}}</h4>
+    {{if settings.layoutsrc == None:}}
+        <p><a href="{{=linktopage}}" class="{{=settings.cssclass_button_extrasmall}} btn-info"> 
+            <i class="icon-eye-open icon-white"></i><strong> {{=T("View page")}}</strong>
+        </a>
+        </p>
+    {{else:}}
+        <p><a href="{{=linktopage}}" class="{{=settings.cssclass_button_small + " " + settings.cssclass_button_warning}}"> 
+            <i class="{{=settings.cssclass_icon_return}}"></i><strong> {{=T("Return")}}</strong>
+        </a>
+        {{if request.function == 'edit_page':}}
+            &nbsp;<a href="javascript:void(0)" onclick='confirmacion("{{=str(pageid)}}");' class="{{=settings.cssclass_button_small + " " + settings.cssclass_button_danger}}">
+            	<i class="{{=settings.cssclass_icon_remove}}"></i><strong> {{=T('Delete')}}</strong></a>        
+        </p>
+        {{pass}}        
+    {{pass}}
+    
+{{=form.custom.begin}}
+<ul id="myTab" name="myTab" class="nav nav-tabs">
+    <!-- Give href an ID value of corresponding "tabs-content" <li>'s -->
+    <li class="active">
+        <a data-toggle="tab" href="#detalles">{{=T('Page Details')}}</a>
+    </li>
+    <li class="">
+        <a data-toggle="tab" href="#permisos">{{=T('Permissions')}}</a>
+    </li>
+    <li class="">
+        <a data-toggle="tab" href="#avanzada">{{=T('Advanced')}}</a>
+    </li>
+</ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane active" id="detalles">
+        <table>
+            <tbody>
+                <tr>
+                    <td class="w2p_fl"><label id="pages_name__label" for="pages_name">{{=form.custom.label['name']}}</label></td>
+                    <td class="w2p_fw">{{=form.custom.widget.name}}</td>
+                    <td class="w2p_fc">{{=form.custom.comment.name}}</td>
+                </tr>
+                <tr>
+                    <td class="w2p_fl"><label id="pages_title__label" for="pages_title">{{=form.custom.label['title']}}</label></td>
+                    <td class="w2p_fw">{{=form.custom.widget.title}}</td>
+                    <td class="w2p_fc">{{=form.custom.comment.title}}</td>
+
+                </tr>
+                <tr>
+                    <td class="w2p_fl"><label id="pages_slug__label" for="pages_slug">{{=form.custom.label['slug']}}</label></td>
+                    <td class="w2p_fw">{{=form.custom.widget.slug}}</td>
+                    <td class="w2p_fc">{{=form.custom.comment.slug}}</td>
+                </tr>
+                <tr>
+                    <td class="w2p_fl"><label id="pages_description__label" for="pages_description">{{=form.custom.label['description']}}</label></td>
+                    <td class="w2p_fw">{{=form.custom.widget.description}}</td>
+                    <td class="w2p_fc">{{=form.custom.comment.description}}</td>
+                </tr>
+                <tr>
+                    <td class="w2p_fl"><label id="pages_keywords__label" for="pages_keywords">{{=form.custom.label['keywords']}}</label></td>
+                    <td class="w2p_fw">{{=form.custom.widget.keywords}}</td>
+                    <td class="w2p_fc">{{=form.custom.comment.keywords}}</td>
+                </tr>
+                <tr>
+                    <td class="w2p_fl"><label id="pages_parent__label" for="pages_parent">{{=form.custom.label['parent']}}</label></td>
+                    <td class="w2p_fw">{{=form.custom.widget.parent}}</td>
+                    <td class="w2p_fc">{{=form.custom.comment.parent}}</td>
+                </tr>                                
+            </tbody>
+        </table>
+        <table>
+            <tbody>
+                <tr>
+                    <td class="w2p_fl"><label id="pages_createdbyuserid__label" for="pages_createdbyuserid">{{=form.custom.label['createdbyuserid']}}</label></td>
+                    <td class="w2p_fl">{{=form.custom.widget.createdbyuserid}}</td>                    
+                </tr>
+                <tr>
+                    <td class="w2p_fl"><label id="pages_createdon__label" for="pages_createdon">{{=form.custom.label['createdon']}}</label></td>
+                    <td class="w2p_fw">{{=form.custom.widget.createdon}}</td>
+                </tr>
+                <tr>
+                    <td class="w2p_fl"><label id="pages_lastmodifiedbyuserid__label" for="pages_lastmodifiedbyuserid">{{=form.custom.label['lastmodifiedbyuserid']}}</label></td>
+                    <td class="w2p_fw">{{=form.custom.widget.lastmodifiedbyuserid}}</td>
+                </tr>
+                <tr>
+                    <td class="w2p_fl"><label id="pages_lastmodifiedondate__label" for="pages_lastmodifiedondate">{{=form.custom.label['lastmodifiedondate']}}</label></td>
+                    <td class="w2p_fw">{{=form.custom.widget.lastmodifiedondate}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="tab-pane" id="permisos">        
+        <table class="table">
+            <thead>
+                <th>{{=T('Group')}}</th>
+                <th>{{=T('View Page')}}</th>
+                <th>{{=T('Edit Page')}}</th>
+            </thead>
+            <tbody>              
+                <tr>
+                    <td class="w2p_fl"><label id="pages_name__label" for="pages_name">{{=T("Administrators")}}</label></td>
+                    <td class="w2p_fw"><input type="checkbox" disabled="True" checked="True" /></td>
+                    <td class="w2p_fw"><input type="checkbox" disabled="True" checked="True" /></td>
+                </tr>   
+                <tr>
+                    <td class="w2p_fl"><label id="pages_name__label" for="pages_name">{{=T("All Users")}}</label></td>
+                    <td class="w2p_fw"><input id="allusersr" name = "allusersr" type="checkbox"{{=" checked=True" if valcheckallusersr else ''}} /></td>
+                    <td class="w2p_fw"><input id="allusersw" name = "allusersw" type="checkbox"{{=" checked=True" if valcheckallusersw else ''}} /></td>
+                </tr>
+            {{for f in recroles:}}
+                <tr>
+                    <td class="w2p_fl"><label id="pages_name__label" for="pages_name">{{=f.role}}</label></td>
+                    <td class="w2p_fw"><input id="{{='checkr' + str(f.id)}}" name = "{{='checkr' + str(f.id)}}" type="checkbox" {{=" checked=True" if dchecks['checkr' + str(f.id)] else ''}} /></td>
+                    <td class="w2p_fw"><input id="{{='checkw' + str(f.id)}}" name = "{{='checkw' + str(f.id)}}" type="checkbox" {{=" checked=True" if dchecks['checkw' + str(f.id)] else ''}} /></td>
+                </tr>
+            {{pass}}
+            </tbody>
+        </table>
+    </div>
+    <div class="tab-pane" id="avanzada">
+        <div class="accordion" id="accordion2">
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#Appearance"> {{=T("Appearance")}} </a>
+                </div>
+                <div id="Appearance" class="accordion-body collapse">
+                    <!-- agregar in para desplegar por defecto -->
+                    <div class="accordion-inner">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="w2p_fl"><label id="pages_isvisible__label" for="pages_isvisible">{{=form.custom.label['isvisible']}}</label></td>
+                                    <td class="w2p_fw">{{=form.custom.widget.isvisible}}</td>
+                                    <td class="w2p_fc">{{=form.custom.comment.isvisible}}</td>
+                                </tr>                                
+                                <tr>
+                                    <td class="w2p_fl"><label id="pages_sectionheadervisible__label" for="pages_sectionheadervisible">{{=form.custom.label['sectionheadervisible']}}</label></td>
+                                    <td class="w2p_fw">{{=form.custom.widget.sectionheadervisible}}</td>
+                                    <td class="w2p_fc">{{=form.custom.comment.sectionheadervisible}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl"><label id="pages_layoutsrc__label" for="pages_layoutsrc">{{=form.custom.label['layoutsrc']}}</label></td>
+                                    <td class="w2p_fw">{{=form.custom.widget.layoutsrc}}</td>
+                                    <td class="w2p_fc">{{=form.custom.comment.layoutsrc}}</td>                                    
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl"><label id="pages_containersrc__label" for="pages_containersrc">{{=form.custom.label['containersrc']}}</label></td>
+                                    <td class="w2p_fw">{{=form.custom.widget.containersrc}}</td>
+                                    <td class="w2p_fc">{{=form.custom.comment.containersrc}}</td>
+                                </tr>                                
+                                <tr>
+                                    <td class="w2p_fl"><label id="pages_disablelink__label" for="pages_disablelink">{{=form.custom.label['disablelink']}}</label></td>
+                                    <td class="w2p_fw">{{=form.custom.widget.disablelink}}</td>
+                                    <td class="w2p_fc">{{=form.custom.comment.disablelink}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl"><label id="pages_pageheadtext__label" for="pages_pageheadtext">{{=form.custom.label['pageheadtext']}}</label></td>
+                                    <td class="w2p_fw">{{=form.custom.widget.pageheadtext}}</td>
+                                    <td class="w2p_fc">{{=form.custom.comment.pageheadtext}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl"><label id="pages_pagefootertext__label" for="pages_pagefootertext">{{=form.custom.label['pagefootertext']}}</label></td>
+                                    <td class="w2p_fw">{{=form.custom.widget.pagefootertext}}</td>
+                                    <td class="w2p_fc">{{=form.custom.comment.pagefootertext}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#others" href="#others"> {{=T("Other Configurations")}} </a>
+                </div>
+                <div id="others" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="w2p_fl"><label id="pages_issecure__label" for="pages_issecure">{{=form.custom.label['issecure']}}</label></td>
+                                    <td class="w2p_fw">{{=form.custom.widget.issecure}}</td>
+                                    <td class="w2p_fc">{{=form.custom.comment.issecure}}</td>
+
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl"><label id="pages_sitemappriority__label" for="pages_sitemappriority">{{=form.custom.label['sitemappriority']}}</label></td>
+                                    <td class="w2p_fw">{{=form.custom.widget.sitemappriority}}</td>
+                                    <td class="w2p_fc">{{=form.custom.comment.sitemappriority}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl"><label id="pages_startdate__label" for="pages_startdate">{{=form.custom.label['startdate']}}</label></td>
+                                    <td class="w2p_fw">{{=form.custom.widget.startdate}}</td>
+                                    <td class="w2p_fc">{{=form.custom.comment.startdate}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl"><label id="pages_enddate__label" for="pages_enddate">{{=form.custom.label['enddate']}}</label></td>
+                                    <td class="w2p_fw">{{=form.custom.widget.enddate}}</td>
+                                    <td class="w2p_fc">{{=form.custom.comment.enddate}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#programming" href="#programming"> {{=T("Programming")}} </a>
+                </div>
+                <div id="programming" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="w2p_fl"><label id="pages_url__label" for="pages_url">{{=form.custom.label['url']}}</label></td>
+                                    <td class="w2p_fw">{{=form.custom.widget.url}}</td>
+                                    <td class="w2p_fc">{{=form.custom.comment.url}}</td>
+
+                                </tr>                                
+                                <tr>
+                                    <td class="w2p_fl"><label id="pages_a__label" for="pages_a">{{=form.custom.label['a']}}</label></td>
+                                    <td class="w2p_fw">{{=form.custom.widget.a}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl"><label id="pages_c__label" for="pages_a">{{=form.custom.label['c']}}</label></td>
+                                    <td class="w2p_fw">{{=form.custom.widget.c}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl"><label id="pages_f__label" for="pages_a">{{=form.custom.label['f']}}</label></td>
+                                    <td class="w2p_fw">{{=form.custom.widget.f}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl"><label id="pages_args__label" for="pages_args">{{=form.custom.label['args']}}</label></td>
+                                    <td class="w2p_fw">{{=form.custom.widget.args}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="w2p_fl"><label id="pages_signature__label" for="pages_signature">{{=form.custom.label['signature']}}</label></td>
+                                    <td class="w2p_fw">{{=form.custom.widget.signature}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{{=form.custom.submit}}
+{{=form.custom.end}}
+{{#=BEAUTIFY(form.errors)}}

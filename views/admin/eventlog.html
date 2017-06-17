@@ -1,0 +1,26 @@
+{{extend 'layout.html'}}
+<script type="text/javascript">
+    function ShowSubTable(titleRow)
+    {    
+        var nextRow = titleRow.nextSibling;
+        while (nextRow != null)
+        {
+            if( nextRow.tagName != 'TR' ){
+                nextRow = nextRow.nextSibling;
+                continue;
+            }
+            if (nextRow.style.display == 'none')
+            {
+                nextRow.style.display = 'table-row';
+            }
+            else
+            {
+                nextRow.style.display = 'none';
+            }
+            break;
+        }        
+    }
+</script>
+<h3>{{=title}}</h3>                               
+{{=formeventlog}}
+{{=tablelog}}

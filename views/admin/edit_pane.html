@@ -1,0 +1,16 @@
+{{extend 'layout.html'}} 
+<h4>Edit Pane</h4>
+<a class="btn btn-mini btn-warning" href="{{=URL(c='admin',f='edit_layout',args=[layoutid,packageid])}}"> 
+    <i class="glyphicon glyphicon-chevron-left"></i><strong>{{=T('Return')}}</strong>
+</a>
+<ul id="myTab" class="nav nav-tabs">
+    <li class="active">
+        <a data-toggle="tab" href="#layout">Layout</a>
+    </li>    
+</ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane active" id="layout">
+        {{=form}}        
+    </div>
+</div>
+

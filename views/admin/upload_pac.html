@@ -1,0 +1,28 @@
+{{extend 'layout.html'}}
+<a class="btn btn-mini btn-warning" href="{{=url_return}}"> 
+    <i class="glyphicon glyphicon-chevron-left"></i><strong>{{=T('Return')}}</strong>
+</a>
+<h4>{{=T("Upload plugin")}}</h4>
+{{=form.custom.begin}}       
+<table>
+    <tbody>
+        <tr>
+            <td><label class="control-label" id="YAML_File__label" for="YAML_File">{{=form.custom.label['YAML_File']}}</label></td>
+            <td>{{=form.custom.widget.YAML_File}}</td>
+        </tr>
+</table>                   
+<h4>{{=T("Or register folder")}}</h4>
+<table>
+    <tbody>
+        <tr>
+            <td><label class="control-label" id="layout_label" for="layout">{{=form.custom.label['register_layout']}}</label></td>
+            <td>{{=form.custom.widget.register_layout}}</td>
+       </tr>
+       <tr>
+            <td><label class="control-label" id="layout_label" for="Type">{{=form.custom.label['Type']}}</label></td>
+            <td>{{=form.custom.widget.Type}}</td>
+       </tr>
+
+</table>
+{{=form.custom.submit}}
+{{=form.custom.end}}

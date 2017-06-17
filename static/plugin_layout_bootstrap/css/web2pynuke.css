@@ -1,0 +1,108 @@
+/* ------------------------------------------
+@import url('../typicons_kit/css/typicons.css');
+CSS 
+-------------------------------------------- */
+/*
+*/
+.controlpanel {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #ADADAD;
+    border-style: solid;
+    border-width: 0 0 2px;
+}
+
+.SubHead, .SubSubHead {
+    color: #000000;
+    font-size: 12px;
+}
+.SubHead {
+    font-weight: bold;
+}
+
+/* ICONS: */
+a.button16 span.icon.edit {
+    background-position: 0 -48px;
+}
+a.button16 span.icon {
+    background-image: url("../images/out16.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 16px;
+    margin: auto 2px auto auto;
+    position: relative;
+    width: 16px;
+}
+
+a.button32 span.icon { display: inline-block; width: 32px; height: 32px; margin: auto 7px auto auto; position: relative; top: 2px; background-image: url('../images/out32.png'); background-repeat: no-repeat; }
+a.button32 span.icon.pagenew { background-position: 0 0 }
+a.button32 span.icon.pages { background-position: 0 -32px }
+a.button32 span.icon.articles { background-position: 0 -64px }
+a.button32 span.icon.articlenew { background-position: 0 -96px }
+a.button32 span.icon.pageblank { background-position: 0 -128px }
+a.button32 span.icon.users { background-position: 0 -160px }
+a.button32 span.icon.tags { background-position: 0 -192px }
+a.button32 span.icon.wiki { background-position: 0 -224px }
+a.button32 span.icon.widgets { background-position: 0 -256px }
+a.button32 span.icon.uploads { background-position: 0 -288px }
+
+a.button16 span.icon { display: inline-block; width: 16px; height: 16px; margin: auto 2px auto auto; position: relative; background-image: url('../images/out16.png'); background-repeat: no-repeat; }
+a.button16 span.icon.activate { background-position: 0 0 }
+a.button16 span.icon.csv { background-position: 0 -16px }
+a.button16 span.icon.remove { background-position: 0 -32px }
+a.button16 span.icon.edit { background-position: 0 -48px }
+a.button16 span.icon.edit_disabled { background-position: 0 -48px;opacity:0.4;filter:alpha(opacity=40); /* For IE8 and earlier */ }
+a.button16 span.icon.table { background-position: 0 -64px }
+a.button16 span.icon.view { background-position: 0 -80px }
+a.button16 span.icon.check { background-position: 0 -96px }
+a.button16 span.icon.disable { background-position: 0 -112px }
+a.button16 span.icon.group { background-position: 0 -128px }
+a.button16 span.icon.pass { background-position: 0 -144px }
+a.button16 span.icon.add { background-position: 0 -160px }
+a.button16 span.icon.back { background-position: 0 -176px }
+a.button16 span.icon.bank { background-position: 0 -192px }
+a.button16 span.icon.services { background-position: 0 -208px}
+a.button16 span.icon.orders { background-position: 0 -224px}
+a.button16 span.icon.pdf { background-position: 0 -240px}
+a.button16 span.icon.pdf_disabled { background-position: 0 -240px;opacity:0.4;filter:alpha(opacity=40); /* For IE8 and earlier */ }
+a.button16 span.icon.factura { background-position: 0 -256px}
+a.button16 span.icon.presus { background-position: 0 -272px}
+a.button16 span.icon.tarifas { background-position: 0 -288px}
+a.button16 span.icon.invisible { background-position: 0 0px;visibility: None}
+
+.pages{margin:0px 0}
+
+/* .sidebars ul {
+    list-style: disc inside none;
+}*/
+div#popular-tags ul {
+    display: block;
+    list-style: none outside none;
+    margin-left: 0em;
+}
+div#popular-tags ul li {
+    float: left;
+    padding: 3px;
+}
+.tagcloud_0 {
+    font-size: xx-small;
+}
+.tagcloud_1 {
+    font-size: small;
+}
+.tagcloud_2 {
+    font-size: medium;
+}
+.tagcloud_3 {
+    font-size: large;
+}
+.tagcloud_4 {
+    font-size: xx-large;
+}
+.tagcloud_5 {
+    font-size: xx-large;
+}

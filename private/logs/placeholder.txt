@@ -1,0 +1,2 @@
+Placeholder file to allow the creation of this folder. You can delete if the
+folder init/private/logs is created.

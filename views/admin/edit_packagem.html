@@ -1,0 +1,108 @@
+{{extend 'layout.html'}}
+<h4>{{=T('Edit Package')}} {{=obj_package.friendlyname}}</h4>
+<a class="btn btn-mini btn-warning" href="{{=urlreturn}}"> 
+    <i class="glyphicon glyphicon-chevron-left"></i><strong>{{=T('Return')}}</strong>
+</a>
+{{=form.custom.begin}}
+<ul id="myTab" class="nav nav-tabs">
+  <!-- Give href an ID value of corresponding "tabs-content" <li>'s -->
+  <li class="active"><a data-toggle="tab" href="#info">Package Info</a></li>
+  <li class=""><a data-toggle="tab" href="#license">License</a></li>
+  <li class=""><a data-toggle="tab" href="#definitions">Modules</a></li>
+  <li class=""><a data-toggle="tab" href="#upgrade">Upgrade</a></li>
+</ul>
+
+<div id="myTabContent" class="tab-content"> 
+    <div class="tab-pane active" id="info">                   
+        <table>
+            <tbody>
+                <tr>
+                    <td><label id = "labeldown">{{=T('Download definition')}}</label></td>
+                    <td> {{=download_def}}</td>
+                </tr>
+                <tr>
+                    <td><label id="name__label" for="name">{{=form.custom.label['name']}}</label></td>
+                    <td> {{=form.custom.widget.name}} </td>
+                </tr>
+                <tr>
+                    <td><label id="friendlyname__label" for="friendlyname">{{=form.custom.label['friendlyname']}}</label></td>
+                    <td> {{=form.custom.widget.friendlyname}} </td>
+                </tr>
+                <tr>
+                    <td><label id="name__label" for="name">{{=form.custom.label['packagetype']}}</label></td>
+                    <td> {{=form.custom.widget.packagetype}} </td>
+                </tr>
+                <tr>
+                    <td><label id="name__label" for="name">{{=form.custom.label['description']}}</label></td>
+                    <td> {{=form.custom.widget.description}} </td>
+                </tr>
+                <tr>
+                    <td><label id="name__label" for="name">{{=form.custom.label['version']}}</label></td>
+                    <td> {{=form.custom.widget.version}} </td>
+                </tr>
+                <tr>
+                    <td><label id="delete" for="delete">{{=T('Check to delete')}}</label></td>
+                    <td> {{=form.custom.delete if form.custom.deletable else SPAN(T("This package is in use and can't be deleted"),_class="text-warning",)}} </td>
+                </tr>   
+        </table>
+    </div>                
+    <div class="tab-pane" id="license">           
+        <table>
+            <tbody>
+                <tr>
+                    <td><label id="name__label" for="name">{{=form.custom.label['license']}}</label></td>
+                    <td> {{=form.custom.widget.license}} </td>
+                </tr>
+                <tr>
+                    <td><label id="friendlyname__label" for="friendlyname">{{=form.custom.label['manifest']}}</label></td>
+                    <td> {{=form.custom.widget.manifest}} </td>
+                </tr>
+                <tr>
+                    <td><label id="name__label" for="name">{{=form.custom.label['owner']}}</label></td>
+                    <td> {{=form.custom.widget.owner}} </td>
+                </tr>
+                <tr>
+                    <td><label id="name__label" for="name">{{=form.custom.label['organization']}}</label></td>
+                    <td> {{=form.custom.widget.organization}} </td>
+                </tr>
+                <tr>
+                    <td><label id="name__label" for="name">{{=form.custom.label['url']}}</label></td>
+                    <td> {{=form.custom.widget.url}} </td>
+                </tr>             
+                <tr>
+                    <td><label id="name__label" for="name">{{=form.custom.label['email']}}</label></td>
+                    <td> {{=form.custom.widget.email}} </td>
+                </tr>
+                <tr>
+                    <td><label id="name__label" for="name">{{=form.custom.label['releasenotes']}}</label></td>
+                    <td> {{=form.custom.widget.releasenotes}} </td>
+                </tr>                         
+                         
+        </table>
+    </div>
+    <div class="tab-pane" id="definitions">           
+        {{=tablemodules}}        
+    </div>
+    <div class="tab-pane" id="upgrade">           
+        <table>
+            <tbody>
+                <tr>
+                    <td><label id="img_logo__label" for="img_logo">{{=T('Current version')}}</label></td>
+                    <td>{{=currentversion}}</td>
+                </tr>
+                <tr>
+                    <td><label id="img_logo__label" for="img_logo">{{=T('Last version available')}}</label></td>
+                    <td>{{=lastversion}}</td>
+                </tr>
+                <tr>
+                    <td><label id="img_logo__label" for="img_logo"></label></td>
+                    <td>{{=upgrade}}</td>
+                </tr>
+            
+            </tbody>
+        </table>              
+    </div>
+</div>
+<br/>
+{{=form.custom.submit}}
+{{=form.custom.end}}

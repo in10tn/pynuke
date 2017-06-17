@@ -1,0 +1,75 @@
+{{extend layoutsrc}}
+{{if modsettings['render_type']=="MARKMIN":}}
+    <script type="text/javascript" src="{{=URL('static','markitup')}}/jquery.markitup.pack.js"></script>
+    <script type="text/javascript" src="{{=URL('static','markitup')}}/sets/markmin/set.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{=URL('static','markitup')}}/skins/markitup/style.css"/>
+    <link rel="stylesheet" type="text/css" href="{{=URL('static','markitup')}}/sets/markmin/style.css"/>
+{{pass}}
+<script type="text/javascript">
+	function confirm_delete(versionid){
+	        var answer = confirm("{{=T('Delete version?')}}" + versionid)        
+	        if (answer){
+				ajax('{{=URL(a="init",c="plugin_htmltext",f="version_delete")}}' + '?versionid=' + versionid, [], ':eval');
+				$('#' + versionid).remove();				
+	        }	        	        
+	}
+	
+	function preview(versionid){
+		ajax('{{=URL(a="init",c="plugin_htmltext",f="version_view")}}' +'?versionid=' + versionid, [], 'shadow_clone');				
+	        }	
+	function revert(versionid,currentmoduleid){
+		var answer = confirm("restaurar version?" + versionid)        
+	        if (answer){
+	        	ajax('{{=URL(a="init",c="plugin_htmltext",f="version_revert")}}' + '?versionid=' + versionid + '&moduleid=' + currentmoduleid, [], ':eval');				
+	        }	
+	}	                	        	
+</script>
+<p>{{=btnreturn}}</p>
+{{=form}}
+<h4>{{=T("Version History")}}</h4>
+<table class="table table-hover" id="tableversions">
+	<thead>
+		<tr>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th>{{=T("Version")}}</th>
+			<th>{{=T("Created on")}}</th>
+			<th>{{=T("Created by user")}}</th>
+		</tr>
+	</thead>
+	<tbody>
+	{{for version in versions:}}
+		<tr id ="{{=version.id}}">
+			<td><a class="{{=settings.cssclass_button_extrasmall}} btn-info"  href="javascript:void(0)" onclick='preview("{{=str(version.id)}}");'>
+					<i class="glyphicon glyphicon-eye-open"></i> <strong> {{=T('View')}}</strong>					
+				</a>
+			</td>
+			<td><a class="{{=settings.cssclass_button_extrasmall + " " + settings.cssclass_button_warning}}" href="javascript:void(0)" onclick='revert("{{=str(version.id)}}",{{=currentmoduleid}});'>
+					<i class="glyphicon glyphicon-hand-up"></i><strong> {{=T('Revert')}}</strong>
+				</a>
+			</td>
+			<td><a class="{{=settings.cssclass_button_extrasmall + " " + settings.cssclass_button_danger}}" href="javascript:void(0)" onclick='confirm_delete("{{=str(version.id)}}");'>
+				 <i class="{{=settings.cssclass_icon_remove}}"></i><strong> {{=T('Delete')}}</strong>
+				</a>
+			</td>
+			<td>{{=version.version}}</td>
+			<td>{{=version.createdon}}</td>
+			<td>{{=version.createdbyuserid}}</td>
+			
+		</tr>						
+	{{pass}}						
+	</tbody>
+</table>
+<br/>
+<h4>Previsualizar</h4>
+<span id='shadow_clone'></span>
+<br/>
+<p>{{=btnreturn}}</p>
+{{if modsettings['render_type']=="MARKMIN":}}
+    <script>
+    jQuery(document).ready(function() {
+      jQuery('textarea').css('width','700px').css('height','200px').markItUp(mySettings);
+    });
+    </script>
+{{pass}}

@@ -1,0 +1,190 @@
+{{import db_pynuke}}<!--[if HTML5]><![endif]--> <!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ --><!--[if lt IE 7]><html class="ie ie6 ie-lte9 ie-lte8 ie-lte7 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]--><!--[if IE 7]><html class="ie ie7 ie-lte9 ie-lte8 ie-lte7 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]--><!--[if IE 8]><html class="ie ie8 ie-lte9 ie-lte8 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]--><!--[if IE 9]><html class="ie9 ie-lte9 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+    <html class="no-js" lang="{{=T.accepted_language or 'en'}}">
+    <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+        <!-- www.phpied.com/conditional-comments-block-downloads/ --><!-- Always force latest IE rendering engine
+        (even in intranet) & Chrome Frame
+        Remove this if you use the .htaccess -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
+        <title>{{=response.title or request.application}}</title>
+        <meta name="application-name" content="{{=request.application}}" />
+        <meta name="author" content="{{=response.meta.author}}" />
+        <meta name="description" content="{{=response.meta.description}}" />
+        <meta name="generator" content="{{=response.meta.generator}}" />
+        <meta name="keywords" content="{{=response.meta.keywords}}" />
+        <!--  Mobile Viewport Fix
+        j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag
+        device-width: Occupy full width of the screen in its current orientation
+        initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
+        user-scalable = yes allows the user to zoom in -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{=response.title or request.application}}</title>
+        <!-- http://dev.w3.org/html5/markup/meta.name.html -->
+        <meta name="application-name" content="{{=request.application}}">
+        <!-- Speaking of Google, don't forget to set your site up:
+        http://google.com/webmasters -->
+        <meta name="google-site-verification" content="">
+        <!-- include stylesheets -->{{
+        response.files.insert(0,URL('static','plugin_layout_bs3/css/web2py.css'))
+        response.files.insert(1,URL('static','plugin_layout_bs3/css/bootstrap.min.css'))
+        #response.files.insert(3,URL('static','plugin_layout_bs3/css/bootstrap-theme.min.css'))
+        response.files.insert(2,URL('static','plugin_layout_bs3/css/web2py-bootstrap3.css'))
+        response.files.insert(3,URL('static','plugin_layout_bs3/css/web2pynuke.css'))
+		response.files.insert(4,URL('static','plugin_layout_bs3/css/modern-business.css'))
+		#response.files.insert(5,URL('static','plugin_layout_bs3/font-awesome/css/font-awesome.min.css'))
+        }}<!-- All JavaScript at the bottom, except for Modernizr which enables
+        HTML5 elements & feature detects -->
+        <script src="{{=URL('static','plugin_layout_bs3/js/modernizr.js')}}">
+        </script>
+        <!-- Favicons -->
+        <link rel="shortcut icon" href="{{=URL('static','plugin_layout_bs3/images/favicon.ico')}}" type="image/x-icon">
+        <link rel="apple-touch-icon" href="{{=URL('static','plugin_layout_bs3/images/favicon.png')}}">
+        {{include 'web2py_ajax.html'}}
+        {{block head}}{{end}}
+        <!--[if lt IE 9]>
+            <script src="{{=URL('static','js/respond.min.js')}}"></script>
+        <![endif]-->
+		{{=head_page}}
+</head>
+
+<body>
+	<div class="flash alert centered alert-dismissable">{{=response.flash or ''}}</div>
+    {{if response.showcontrolpanel=='True':}} 
+    	{{=LOAD('controlpanel','controlpanel')}}  
+    {{pass}} 
+	<!-- Navbar =================================================================== -->
+        <nav class="navbar navbar-inverse {{=' navbar-fixed-top' if (response.showcontrolpanel=='False' or response.showcontrolpanel==None) else '' }}" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                   	
+                    </button>
+					<a href="/" class="navbar-brand">{{=bootstrap_brand}}</a>
+                    {{=response.logo or ''}}
+                </div>
+                <div class="collapse navbar-collapse navbar-ex1-collapse">                    
+					<ul class="nav navbar-nav navbar-right">
+                        {{if response.menu:}}
+                    		{{=MENU(response.menu, _class='nav navbar-nav',li_class='dropdown',ul_class='dropdown-menu')}}
+                    	{{pass}}
+						{{='auth' in globals() and auth.navbar('Welcome',mode='dropdown') or ''}}
+                    </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="flash">{{=response.flash or ''}}</div>	    
+    {{if settings.masthead == True:}}
+	    <!-- Masthead ================================================== -->
+	    <header class="mastheader" id="header">
+	      <div class="page-header">
+			<h1>
+			  {{=response.logo or response.site_title}}
+			  <small>{{=response.site_description or ''}}</small>
+			</h1>
+	      </div>	    
+	    </header>
+	{{else:}}
+	    <header class="mastheader" id="header"></header>
+	{{pass}}
+               {{=settings.breadcrumbs}}
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Intro Content -->
+        <div class="row">
+            <div class="col-md-6">
+				{{db_pynuke.PyNuke().render_modules_in_pane('doublepane_1')}} 				
+            </div>
+            <div class="col-md-6">
+				{{db_pynuke.PyNuke().render_modules_in_pane('doublepane_2')}} 
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Team Members -->
+        <div class="row">
+            <div class="col-lg-12">
+                {{db_pynuke.PyNuke().render_modules_in_pane('contentpane')}} 
+            </div>
+            <div class="col-md-4 text-center">
+                {{db_pynuke.PyNuke().render_modules_in_pane('showpaneup_1')}}				
+            </div>
+            <div class="col-md-4 text-center">
+                {{db_pynuke.PyNuke().render_modules_in_pane('showpaneup_2')}}
+            </div>
+            <div class="col-md-4 text-center">
+                {{db_pynuke.PyNuke().render_modules_in_pane('showpaneup_3')}}
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Our Customers -->
+        <div class="row">           
+			{{include}}
+			{{db_pynuke.PyNuke().render_modules_in_pane('bottompane')}}
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+       <!-- Footer =================================================================== -->
+    <footer id="footer" class="container footer">
+        <div class="row">
+            {{block footer}}
+            <div class="col-xs-6">
+                <p>
+                    {{=T('Copyright')}} &#169; {{=request.now.year}}
+                </p>
+            </div>
+            <div class="col-xs-6">
+                <p class="pull-right">
+                    {{=T('Powered by')}} <a href="http://www.pynuke.net/">Pynuke</a>
+                </p>
+            </div>
+            {{end footer}}
+        </div>
+    </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- The javascript =========================================================== -->
+    <script src="{{=URL('static','plugin_layout_bs3/js/bootstrap.min.js')}}">
+    </script>
+    <script src="{{=URL('static','plugin_layout_bs3/js/web2py-bootstrap3.js')}}">
+    </script>
+    {{block page_js}}{{end page_js}}
+    {{if response.google_analytics_id:}}
+    <!-- Analytics ================================================================ -->
+    <script src="{{=URL('static','plugin_layout_bs3/js/analytics.min.js')}}">
+    </script>
+    <script type="text/javascript">
+        analytics.initialize({
+            'Google Analytics': {
+                trackingId: '{{=response.google_analytics_id}}'
+            }
+        });
+    </script>
+    {{pass}}<!-- Share ==================================================================== -->
+    <script src="{{=URL('static','plugin_layout_bs3/js/share.js',vars=dict(static=URL('static','plugin_layout_bs3/images')))}}">
+    </script>
+	{{=footer_page}}
+    </body>
+</body>
+
+</html>

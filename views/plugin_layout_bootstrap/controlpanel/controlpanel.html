@@ -1,0 +1,245 @@
+<script>
+        jQuery(document).ready(function() {
+                sv = '{{=settings.controlpanelvisibility}}'
+                if(sv == 'MIN') {
+                        $("#controlpanel").toggle(false);
+                }
+                if(sv == 'MAX') {
+                        $("#controlpanel").toggle(true);
+                }
+                pageid = '{{=pageid}}';
+                document.getElementById('txtpageid').value = pageid;
+                jQuery('body').css('padding-top', '0px');
+        }); 
+        function confirmacion(recno) {
+        pageid = '{{=pageid}}';
+        var answer = confirm("Eliminar Pagina? " + pageid )        
+        if (answer){                                    
+           ajax("{{=URL(c='admin',f='page_delete',vars={'pageid':pageid})}}", [],':eval');
+        }
+        };
+        function confirma() {
+        var answer = confirm("{{=T('Delete all unauthorized users?')}}")        
+        if (answer){                                    
+           ajax("{{=URL(c='admin',f='delete_unauthorized_users',user_signature=True)}}", [],':eval');
+        }
+        };
+        function deletemodule(recno) {
+        pageid = '{{=pageid}}';
+        var answer = confirm("Eliminar módulo? " + recno )        
+        if (answer){                                    
+           ajax("{{=URL(c='default',f='pagemodule_delete')}}" + '?pagemoduleid=' + recno + '&pageid=' + pageid, [],':eval');
+        }
+        };
+
+        function toglecontrolpanel() {
+                $("#controlpanel").toggle("slow");
+                ajax("{{=URL(c='controlpanel',f='togglecpanel')}}", []);
+        };
+        function toglecontrolpanelmode(t) {
+                document.getElementById('txtcpmode').value = t;
+                document.getElementById('optmode0').visible = false;
+                document.getElementById('optmode1').visible = false;
+                document.getElementById('optmode2').visible = false;
+                ajax("{{=URL(c='controlpanel',f='togglecpanelmode')}}", ['txtcpmode'], ':eval');
+        };
+        function addmodule() {
+                ajax("{{=URL(c='controlpanel',f='add_module')}}", ['chkcopysettings','listmodules', 'listpanes', 'txtpageid', 'txttitle', 'cbopermissions', 'cboposition', 'cboalignment', 'optmoduletype','listpagemodules'], ':eval');
+        };
+        function add_existing_module(mode) {            
+                if (mode=="1"){
+                        //* jQuery(listmodules).remove(); *//
+                        jQuery('select[name=listpages]').css('display','');                        
+                        jQuery('select[name=listpagemodules]').css('display','');                        
+                        jQuery('select[name=listmodules]').css('display','None');
+                        jQuery('label[for=chkcopysettings]').css('display','');
+                } else {
+                        jQuery('select[name=listpages]').css('display','None');                        
+                        jQuery('select[name=listpagemodules]').css('display','None');                        
+                        jQuery('select[name=listmodules]').css('display','');
+                        jQuery('label[for=chkcopysettings]').css('display','None');
+                        ajax("{{=URL(c='controlpanel',f='pagemodules_get/' + str(pageid))}}", ['listpages'], ':eval');
+                }               
+        };
+        function changed_pages() {
+            
+            ajax("{{=URL(c='controlpanel',f='pagemodules_get')}}", ['listpages'], ':eval');
+            
+        };
+</script>
+<div class="row-fluid show-grid" style="box-shadow:5px 5px 9px #000000;">
+        <h6 class="text">
+        <div class="span1" style="text-align:right;">
+                {{=T('Mode')}}:
+        </div>
+        <div class="span5">
+                <input type="text" style="display:None" name="txtcpmode" id = "txtcpmode">
+                <input type="text" style="display:None" value = "{{=pageid}}" name="txtpageid" id = "txtpageid">
+                <label class="checkbox inline">
+                        <input type="checkbox" onclick="toglecontrolpanelmode('VIEW')" {{="checked='checked'" if str(settings.controlpanelmode)=='VIEW' else ""}} value="VIEW" name="optmode" id="optmode0">
+                <span>{{=T('View')}}</span>&nbsp;
+                </label>
+                <label class="checkbox inline">
+                        <input type="checkbox" onclick="toglecontrolpanelmode('EDIT')" {{="checked='checked'" if str(settings.controlpanelmode)=='EDIT' else ""}} value="EDIT" name="optmode" id="optmode1">
+                <span>{{=T('Edit')}}</span>&nbsp;
+                </label>
+                <label class="checkbox inline">
+                        <input type="checkbox" onclick="toglecontrolpanelmode('DESIGN')" {{="checked='checked'" if str(settings.controlpanelmode)=='DESIGN' else ""}} value="DESIGN" name="optmode" id="optmode2">
+                <span>{{=T('Design')}}</span>
+                </label>
+        </div>
+        <div class="span6">
+                <span class="pull-right">{{=T('Show Control Panel')}} ?
+                        <a href="javascript:void(0)" id="IconBar_cmdVisibility"> <img onclick='toglecontrolpanel();' style="border-width:0px;" alt="Minimize" src="{{=URL('static','images/controlpanel/expand.gif')}}"> </a>&nbsp;
+                </span>
+        </div>
+        </h6>
+</div>
+<div id="controlpanel" class="row-fluid show-grid">
+	<div class="row-fluid show-grid">
+	        <div class="span3" align="center">              
+				<h6>{{=T('Page Functions')}}</h6>
+	        </div>
+	        <div class="span6" align="center">               
+	            <h6>{{=T('Add Module')}}:&nbsp;&nbsp;&nbsp;&nbsp;
+	                <input name="optmoduletype" type="radio" onclick="add_existing_module('0');" checked="checked" value="0">
+	                {{=T('New')}}&nbsp;&nbsp;
+	                <input name="optmoduletype" type="radio" onclick="add_existing_module('1');" value="1">
+	                {{=T('Existing')}}
+                    {{=ddlpages}}
+                    <label style="display:None" for="chkcopysettings">{{=T('Copy settings')}}
+                        <input id ="chkcopysettings" name="chkcopysettings" type="checkbox" checked>
+                        <input id ="chkcopysettings" name="chkcopysettings" type="text" value="F" style="display:None"></label>
+                    </label>
+	            </h6>
+	        </div>
+	        <div class="span3" align="center">              
+				<h6>{{=T('Common Tasks')}}</h6>
+	        </div>
+	</div>
+	<div class="row-fluid show-grid">
+        <div class="span3" align="center" style="box-shadow:5px 5px 7px #000000; margin: 5px;">              
+                <br/>
+				<div>
+                         <div class="btn-group">
+                                <a style="width:65px; margin: 4px 2px;" href="{{=URL(c='admin',f='add_page',args=settings.currentpage)}}" class="btn btn-small btn-primary btn-success"><i class="icon-plus-sign icon-white"></i><strong>{{=T('Add')}}</strong></a>
+                                <a style="width:65px; margin: 4px 2px;" href="{{=URL(c='admin',f='edit_page',args=settings.currentpage)}}" class="btn btn-small btn-primary"><i class="icon-pencil icon-white"></i><strong>{{=T('Edit')}}</strong></a>
+                                {{if can_page_be_deleted:}}
+                                    <a style="width:65px; margin: 4px 2px;" href="javascript:void(0)" onclick='confirmacion("{{=str(pageid)}}");' class="btn btn-small btn-primary btn-danger"><i class="icon-trash icon-white"></i><strong>{{=T('Delete')}}</strong></a>                   
+                                {{else:}}
+                                    <a style="width:65px; margin: 4px 2px;" href="#" class="btn btn-small btn-primary btn-danger disabled"><i class="icon-trash icon-white"></i><strong>{{=T('Delete')}}</strong></a>
+                                {{pass}}
+                                
+                         </div>                 
+                 </div>
+                 <div>
+                         <div class="btn-group">                                                        
+                                {{if can_copy_page:}}
+                                    <a style="width:65px; margin: 4px 2px;" href="{{=URL(c='admin',f='copy_page',args=settings.currentpage)}}" class="btn btn-small btn-primary"><i class="icon-file icon-white"></i><strong>{{=T('Copy')}}</strong></a>                   
+                                {{else:}}
+                                    <a style="width:65px; margin: 4px 2px;" href="#" class="btn btn-small btn-primary disabled"><i class="icon-file icon-white"></i><strong>{{=T('Copy')}}</strong></a>
+                                {{pass}}                                
+                                {{if can_page_be_exported:}}
+                                    <a style="width:65px; margin: 4px 2px;" href="{{=URL(c='admin',f='export_page',args=settings.currentpage)}}" class="btn btn-small btn-primary"><i class="icon-share icon-white"></i><strong>{{=T('Export')}}</strong></a>                   
+                                {{else:}}
+                                    <a style="width:65px; margin: 4px 2px;" href="#" class="btn btn-small btn-primary disabled"><i class="icon-share icon-white disabled"></i><strong>{{=T('Export')}}</strong></a>
+                                {{pass}}                                
+                                <a style="width:65px; margin: 4px 2px;" href="{{=URL(c='admin',f='edit_page',args=settings.currentpage)}}" class="btn btn-small btn-primary"><i class="icon-arrow-down icon-white"></i><strong>{{=T('Import')}}</strong></a>
+                        </div>
+                </div>
+                <br/>
+        </div>
+        <div class="span6">               
+                <div class="row">
+                        <div class="span2" align="right">
+                                <p class="text"><strong>{{=T('Module')}}:</strong></p>
+                        </div>  
+                        <div class="span3">
+   								<select class="form-control" name='listmodules' id='listmodules' style="width: 185px;">
+									{{=ddlmodules}}
+		                        <select>
+                                <select name="listpagemodules" {{=" disabled='True'" if not can_add_modules else ""}} id="listpagemodules" style="width: 185px; display: None;">
+                                        
+                                </select>  
+                        </div>  
+                        <div class="span2" align="right">
+                                <p class="text"><strong>{{=T('Pane')}}:</strong></p>
+                        </div>  
+                        <div class="span3">
+                               <select class="form-control"  name='listpanes' style="width: 150px;">
+								{{=panes_in_page}}
+	                    	</select>
+                        </div>                                                                                          
+                </div>
+                <div class="row">
+                        <div class="span2" align="right">
+                                <p class="text"><strong>{{=T('Title')}}:</strong></p>
+                        </div>  
+                        <div class="span3">
+                                <input name = "txttitle" id="txttitle" type="text" style="width:170px;" {{=" disabled='True'" if not can_add_modules else ""}}>
+                        </div>
+                        <div class="span2" align="right">
+                                <p class="text"><strong>{{=T('Insert')}}:</strong></p>
+                        </div>  
+                        <div class="span3">
+                                <select id="cboposition" {{=" disabled='True'" if not can_add_modules else ""}} class="NormalTextBox" style="width:150px;" name="cboposition">
+                                                <option value="0">{{=T('Top')}}</option>
+                                                <option value="-1" selected="selected">{{=T('Bottom')}}</option>
+                                        </select>
+                        </div>                          
+                </div>
+                <div class="row">
+                        <div class="span2" align="right">
+                                <p class="text"><strong>{{=T('Visibility')}}:</strong></p>
+                        </div>  
+                        <div class="span3">
+                                <select {{=" disabled='True'" if not can_add_modules else ""}} style="width:185px;">
+									<option value="0" selected="selected">{{=T('Same As Page')}}</option>
+									<option value="1">{{=T('Page Editors Only')}}</option>
+                                </select>
+                        </div>  
+                        <div class="span2" align="right">
+                                <p class="text"><strong>{{=T('Align')}}:</strong></p>
+                        </div>  
+                        <div class="span3">
+                                <select {{=" disabled='True'" if not can_add_modules else ""}} id="cboalignment" class="NormalTextBox" style="width:150px;" name="cboalignment">
+                                        <option value="left" selected="selected">{{=T('Left')}}</option>
+                                        <option value="center">{{=T('Center')}}</option>
+                                        <option value="right">{{=T('Right')}}</option>
+                                        <option value="">{{=T('Not Specified')}}</option>
+                                </select>
+                        </div>                          
+			            <div class="span2">
+                                {{if can_add_modules:}}
+                                    <a class="btn btn-small btn-success" onclick="addmodule();" href="javascript:void(0)"> 
+                                            <i class="icon-plus-sign icon-white"></i>
+                                            <strong> {{=T('Add')}} </strong> 
+                                    </a>            
+                   
+                                {{else:}}
+                                    <a class="btn btn-small btn-success disabled" href="#"> 
+                                            <i class="icon-plus-sign icon-white"></i>
+                                            <strong> {{=T('Add')}} </strong> 
+                                    </a>            
+                                {{pass}}                                
+			            </div>
+                </div>
+        </div>
+        <div class="span3" align="center" style="box-shadow:5px 5px 7px #000000; margin: 5px;">              
+                <div>
+                        <div class="btn-group"">
+                                <a style="width:60px; margin-top: 8px;" href="{{=URL(c='admin',f='site_settings')}}" class="btn btn-small btn-primary"><i class="icon-wrench icon-white"></i><br/><span><strong>{{=T('Settings')}}</strong></span></a>
+                                <a style="width:60px; margin-top: 8px; margin-left: 4px;" href="{{=URL(c='admin',f='manage_users')}}" class="btn btn-small btn-primary"><i class="icon-user icon-white"></i><br/><span><strong>{{=T('Users')}}</strong></span></a>
+                                <a style="width:60px; margin-top: 8px; margin-left: 4px;" href="{{=URL(c='admin',f='manage_groups')}}" class="btn btn-small btn-primary"><i class="icon-lock icon-white"></i><br/><span><strong>{{=T('Groups')}}</strong></span></a>
+                        </div>
+                </div>          
+                <div>
+                        <div class="btn-group"">
+                                <a style="width:60px; margin-top: 8px; margin-bottom: 8px;" class="btn btn-small btn-primary" href="{{=URL(c='appadmin',f='select',args='db',vars={'query':'db.plugin_ckeditor_upload.id>0'})}}"><i class="icon-folder-open icon-white"></i><br/><strong>{{=T('Files')}}</strong></a>
+                                <a style="width:60px; margin-top: 8px; margin-bottom: 8px; margin-left: 4px;" href="http://www.pynuke.net/ayuda" class="btn btn-small btn-primary"> <i class="icon-info-sign icon-white"></i><br/><strong>{{=T('Help')}}</strong></a>
+                                <a style="width:60px; margin-top: 8px; margin-bottom: 8px; margin-left: 4px;" href="http://www.pynuke.net/soluciones" class="btn btn-small btn-primary"> <i class="icon-thumbs-up icon-white"></i><br/><strong>{{=T('Solutions')}}</strong></a>
+                        </div>
+                </div>          
+        </div>
+	</div>
+</div>

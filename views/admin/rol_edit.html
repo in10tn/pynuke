@@ -1,0 +1,99 @@
+{{extend 'layout.html'}}
+<script type="text/javascript">
+	function confirmacion(recno) {
+		var answer = confirm("Eliminar rol?" + recno)
+		if(answer) {
+			var done_update = '?delete=1';
+			window.location = window.location.href + done_update;
+		}
+	}
+
+	function role_add() {
+		ajax('../role_add?mode=rol&roles={{=objrol.id}}', ['userid', 'avisar_usuario'], ':eval');
+	    var select2 = document.getElementById("userid");
+        for (var i = 0; i < select2.options.length; i++)
+            {
+                if (select2.value == select2.options[i].value)
+                {
+                    select2.options[i] = null;
+                    break;
+                }
+            }
+	}
+
+	function confirm_deleteusuario(usuarioid) {
+		var answer = confirm("Eliminar usuario de este grupo?" + usuarioid)
+		if(answer) {
+			ajax('../roleuser_delete?mode=rol&userid=' + usuarioid + "&role={{=objrol.id}}", [], ':eval');
+			$('#' + usuarioid).remove();
+		}
+	}
+</script>
+<a class="btn btn-mini btn-warning" href="{{=URL(c='admin',f='manage_groups')}}"> 
+	<i class="glyphicon glyphicon-chevron-left"></i><strong>{{=T('Return')}}</strong>
+</a>
+<ul id="myTab" class="nav nav-tabs">
+  <!-- Give href an ID value of corresponding "tabs-content" <li>'s -->
+  <li class="active"><a data-toggle="tab" href="#user">Edit User</a></li>
+  <li class=""><a data-toggle="tab" href="#userroles">User Roles</a></li>
+ </ul>
+<div id="myTabContent" class="tab-content"> 
+	<div class="tab-pane active" id="user">
+		{{=form}}
+	</div>
+	<div class="tab-pane" id="userroles">
+		<table>
+			<tbody>
+				<tr>
+					<td><label id="clientes_usuarios__label">Usuario</label></td>
+					<td>
+						<select id = 'userid' name='userid'>
+							{{for usuario in todoslosusers:}}
+								{{if db_security.PNSecurity().user_has_membership(usuario.id,objrol.id)==False:}}
+									<option value="{{=usuario.id}}">{{= usuario.email + '(' + usuario.first_name + ' ' + usuario.last_name + ' Id: ' + str(usuario.id) +')' }}</option>
+								{{pass}}
+							{{pass}}
+						</select>
+						<a class='btn btn-small btn-success' onclick="role_add();" href="javascript:void(0);">
+							<i class=' icon-ok-sign icon-white'></i>
+							<strong>{{=T('Add')}}</strong>
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td><label id="Notificar_usuario__label">Notificar Usuario</label></td>
+					<td>
+					<input type=checkbox checked name='avisar_usuario'/>
+					</td>
+				</tr>
+			</tbody>
+		</table>	
+		<h4>Usuarios Asignados a grupo {{=objrol.role}}</h4>		
+		<table class="table table-hover" id="tableroles">
+			<thead>
+				<th></th>
+				<th>Usuario</th>
+			</thead>
+			<tbody>
+			{{for usuario in usersasignados:}}			
+				<tr id ="{{=usuario.id}}">
+					<td>							
+						{{if db_security.PNSecurity().membership_isdeletable(usuario.id,objrol.id):}}
+							<a class="btn btn-mini btn-danger" onclick='confirm_deleteusuario("{{=str(usuario.id)}}");' href="javascript:void(0)">
+							 	<i class="icon-remove icon-white"></i><strong>{{=T('Delete')}}</strong>
+							</a>	
+						{{pass}}
+					</td>
+					<td>
+						{{=usuario.email}}
+					</td>
+				</tr>				
+			{{pass}}
+			</tbody>
+		</table>
+	</div>
+</div>
+<br/>
+<a class="btn btn-mini btn-warning" href="{{=URL(c='admin',f='manage_users')}}"> 
+	<i class="icon-arrow-left icon-white"></i><strong>{{=T('Return')}}</strong>
+</a>

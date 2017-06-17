@@ -1,0 +1,227 @@
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery('textarea[id=pages_description]').css('height','80px');        
+        jQuery('textarea[id=pages_keywords]').css('height','80px');
+        });
+</script>
+{{if can_edit_page:}}
+<h4>{{=title}}</h4>
+    {{=form.custom.begin}}
+    <ul id="myTab" class="nav nav-tabs">
+        <!-- Give href an ID value of corresponding "tabs-content" <li>'s -->
+        <li class="active">
+            <a data-toggle="tab" href="#detalles">{{=T('Page Details')}}</a>
+        </li>
+        <li class="">
+            <a data-toggle="tab" href="#permisos">{{=T('Permissions')}}</a>
+        </li>
+        <li class="">
+            <a data-toggle="tab" href="#avanzada">{{=T('Advanced')}}</a>
+        </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane active" id="detalles">
+            <table>
+                <tbody>
+                    <tr>
+                        <td><label id="pages_name__label" for="pages_name">{{=form.custom.label['name']}}</label></td>
+                        <td>{{=form.custom.widget.name}}</td>
+                    </tr>
+                    <tr>
+                        <td><label id="pages_title__label" for="pages_title">{{=form.custom.label['title']}}</label></td>
+                        <td>{{=form.custom.widget.title}}</td>
+                    </tr>
+                    <tr>
+                        <td><label id="pages_slug__label" for="pages_slug">{{=form.custom.label['slug']}}</label></td>
+                        <td>{{=form.custom.widget.slug}}</td>
+                    </tr>
+                    <tr>
+                        <td><label id="pages_description__label" for="pages_description">{{=form.custom.label['description']}}</label></td>
+                        <td>{{=form.custom.widget.description}}</td>
+                    </tr>
+                    <tr>
+                        <td><label id="pages_keywords__label" for="pages_keywords">{{=form.custom.label['keywords']}}</label></td>
+                        <td>{{=form.custom.widget.keywords}}</td>
+                    </tr>
+                <tr>
+                    <td class="w2p_fl"><label id="pages_parent__label" for="pages_parent">{{=form.custom.label['parent']}}</label></td>
+                    <td class="w2p_fw">{{=form.custom.widget.parent}}</td>
+                </tr>                                
+
+                </tbody>
+            </table>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><label id="pages_createdbyuserid__label" for="pages_createdbyuserid">{{=form.custom.label['createdbyuserid']}}</label></td>
+                        <td>{{=form.custom.widget.createdbyuserid}}</td>
+                    </tr>
+                    <tr>
+                        <td><label id="pages_createdon__label" for="pages_createdon">{{=form.custom.label['createdon']}}</label></td>
+                        <td>{{=form.custom.widget.createdon}}</td>
+                    </tr>
+                    <tr>
+                        <td><label id="pages_lastmodifiedbyuserid__label" for="pages_lastmodifiedbyuserid">{{=form.custom.label['lastmodifiedbyuserid']}}</label></td>
+                        <td>{{=form.custom.widget.lastmodifiedbyuserid}}</td>
+                    </tr>
+                    <tr>
+                        <td><label id="pages_lastmodifiedondate__label" for="pages_lastmodifiedondate">{{=form.custom.label['lastmodifiedondate']}}</label></td>
+                        <td>{{=form.custom.widget.lastmodifiedondate}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane" id="permisos">        
+            <table>
+                <thead>
+                    <th>{{=T('Group')}}</th>
+                    <th>{{=T('View Page')}}</th>
+                    <th>{{=T('Edit Page')}}</th>
+                </thead>
+                <tbody>              
+                    <tr>
+                        <td><label id="pages_name__label" for="pages_name">{{=T("Administrators")}}</label></td>
+                        <td><input type="checkbox" disabled="True" checked="True" /></td>
+                        <td><input type="checkbox" disabled="True" checked="True" /></td>
+                    </tr>   
+                    <tr>
+                        <td><label id="pages_name__label" for="pages_name">{{=T("All Users")}}</label></td>
+                        <td><input id="allusersr" name = "allusersr" type="checkbox"{{=" checked=True" if valcheckallusersr else ''}} /></td>
+                        <td><input id="allusersw" name = "allusersw" type="checkbox"{{=" checked=True" if valcheckallusersw else ''}} /></td>
+                    </tr>
+                {{for f in recroles:}}
+                    <tr>
+                        <td><label id="pages_name__label" for="pages_name">{{=f.role}}</label></td>
+                        <td><input id="{{='checkr' + str(f.id)}}" name = "{{='checkr' + str(f.id)}}" type="checkbox" {{=" checked=True" if dchecks['checkr' + str(f.id)] else ''}} /></td>
+                        <td><input id="{{='checkw' + str(f.id)}}" name = "{{='checkw' + str(f.id)}}" type="checkbox" {{=" checked=True" if dchecks['checkw' + str(f.id)] else ''}} /></td>
+                    </tr>
+                {{pass}}
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane" id="avanzada">
+            <div class="accordion" id="accordion2">
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#Appearance"> {{=T("Appearance")}} </a>
+                    </div>
+                    <div id="Appearance" class="accordion-body collapse">
+                        <!-- agregar in para desplegar por defecto -->
+                        <div class="accordion-inner">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td><label id="pages_isvisible__label" for="pages_isvisible">{{=form.custom.label['isvisible']}}</label></td>
+                                        <td>{{=form.custom.widget.isvisible}}</td>
+                                    </tr>                                
+                                    <tr>
+                                        <td><label id="pages_sectionheadervisible__label" for="pages_sectionheadervisible">{{=form.custom.label['sectionheadervisible']}}</label></td>
+                                        <td>{{=form.custom.widget.sectionheadervisible}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label id="pages_iconfile__label" for="pages_iconfile">{{=form.custom.label['iconfile']}}</label></td>
+                                        <td>{{=form.custom.widget.iconfile}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label id="pages_iconfilelarge__label" for="pages_iconfilelarge">{{=form.custom.label['iconfilelarge']}}</label></td>
+                                        <td>{{=form.custom.widget.iconfilelarge}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label id="pages_layoutsrc__label" for="pages_layoutsrc">{{=form.custom.label['layoutsrc']}}</label></td>
+                                        <td>{{=form.custom.widget.layoutsrc}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label id="pages_viewsrc__label" for="pages_containersrc">{{=form.custom.label['containersrc']}}</label></td>
+                                        <td>{{=form.custom.widget.containersrc}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label id="pages_disablelink__label" for="pages_disablelink">{{=form.custom.label['disablelink']}}</label></td>
+                                        <td>{{=form.custom.widget.disablelink}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label id="pages_pageheadtext__label" for="pages_pageheadtext">{{=form.custom.label['pageheadtext']}}</label></td>
+                                        <td>{{=form.custom.widget.pageheadtext}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label id="pages_pagefootertext__label" for="pages_pagefootertext">{{=form.custom.label['pagefootertext']}}</label></td>
+                                        <td>{{=form.custom.widget.pagefootertext}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#others" href="#others"> {{=T("Other Configurations")}} </a>
+                    </div>
+                    <div id="others" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <table width="95%">
+                                <tbody>
+                                    <tr>
+                                        <td><label id="pages_issecure__label" for="pages_issecure">{{=form.custom.label['issecure']}}</label></td>
+                                        <td>{{=form.custom.widget.issecure}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label id="pages_sitemappriority__label" for="pages_sitemappriority">{{=form.custom.label['sitemappriority']}}</label></td>
+                                        <td>{{=form.custom.widget.sitemappriority}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label id="pages_startdate__label" for="pages_startdate">{{=form.custom.label['startdate']}}</label></td>
+                                        <td>{{=form.custom.widget.startdate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label id="pages_enddate__label" for="pages_enddate">{{=form.custom.label['enddate']}}</label></td>
+                                        <td>{{=form.custom.widget.enddate}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#programming" href="#programming"> {{=T("Programming")}} </a>
+                    </div>
+                    <div id="programming" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <table width="95%">
+                                <tbody>
+                                    <tr>
+                                        <td><label id="pages_url__label" for="pages_url">{{=form.custom.label['url']}}</label></td>
+                                        <td>{{=form.custom.widget.url}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label id="pages_a__label" for="pages_a">{{=form.custom.label['a']}}</label></td>
+                                        <td>{{=form.custom.widget.a}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label id="pages_c__label" for="pages_a">{{=form.custom.label['c']}}</label></td>
+                                        <td>{{=form.custom.widget.c}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label id="pages_f__label" for="pages_a">{{=form.custom.label['f']}}</label></td>
+                                        <td>{{=form.custom.widget.f}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label id="pages_args__label" for="pages_args">{{=form.custom.label['args']}}</label></td>
+                                        <td>{{=form.custom.widget.args}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label id="pages_signature__label" for="pages_signature">{{=form.custom.label['signature']}}</label></td>
+                                        <td>{{=form.custom.widget.signature}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    {{=form.custom.submit}}
+    {{=form.custom.end}}
+{{pass}}
+{{#=BEAUTIFY(form.errors)}}

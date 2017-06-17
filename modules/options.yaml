@@ -1,0 +1,1075 @@
+web2pynuke_options:
+
+- option_name: "pynuke_version"
+  option_value: "Version 0.0.97 (2015-03-30 13:51:00);a627d6542c197607ba74fa312a588a0f61de3378"
+
+- option_name: "url_check_version"
+  option_value: "http://www.pynuke.net/init/default/current_version"
+
+- option_name: "plugin_layout_default"
+  option_value: "1"
+
+- option_name: "plugin_container_default"
+  option_value: "9"
+
+- option_name: "img_logo"
+  option_value: ""
+
+- option_name: "link_logo"
+  option_value: ""
+
+- option_name: "site_title"
+  option_value: "Business name"
+  
+- option_name: "site_description"
+  option_value: "Business description"
+
+- option_name: "bootstrap_brand"
+  option_value: "bootstrap_brand"
+
+- option_name: "author"
+  option_value: "Your Name <you@example.com>"
+
+- option_name: "keywords"
+  option_value: "web2py, pynuke, python, framework"
+
+- option_name: "generator"
+  option_value: "Pynuke"
+
+- option_name: "copyright"
+  option_value: "Copyright 2014"
+   
+- option_name: "startpageid"
+  option_value: "5"
+     
+- option_name: "redirectafterlogin"
+  option_value: "5"
+
+- option_name: "redirectafterlogout"
+  option_value: "5"
+
+- option_name: "redirectafterregister"
+  option_value: "5"
+
+- option_name: "gmt_offset"
+  option_value: 1
+        
+- option_name: "google_meta"
+  option_value: ""
+
+- option_name: "google_analytics_id"
+  option_value: ""
+
+- option_name: "migrate"
+  option_value: "True"
+
+- option_name: "admin_first_name"
+  option_value: "Your Name"
+
+- option_name: "admin_last_name"
+  option_value: "Your Last Name"
+  
+- option_name: "admin_initial_password"
+  option_value: "admin"
+
+- option_name: "admin_email"
+  option_value: "admin@example.com"
+
+- option_name: "portal_admin"
+  option_value: "1"
+
+- option_name: "registration_type"
+  option_value: "verified"
+  
+- option_name: "use_mail_as_username"
+  option_value: "False"
+
+- option_name: "mail_settings_server"
+  option_value: "smtp.gmail.com:587"
+
+- option_name: "mail_settings_sender"
+  option_value: "xxx@example.com"
+
+- option_name: "mail_settings_allmessageswithcopyto"
+  option_value: "example@example.com"
+
+- option_name: "mail_settings_TLS"
+  option_value: "False"
+
+- option_name: "mail_settings_SSL"
+  option_value: "False"
+
+- option_name: "mail_settings_login"
+  option_value: "xxx@example.com:password"
+ 
+- option_name: "mail_settings_logging"
+  option_value: "True"
+
+- option_name: "mail_maximo_num_envios_x_sendqueue"
+  option_value: "-1"
+  
+- option_name: "reset_password_requires_verification"
+  option_value: "False"
+ 
+- option_name: "LevelLogging"
+  option_value: "INFO"
+    
+- option_name: "force_SSL"
+  option_value: "False"
+
+- option_name: "auth_require_recaptcha"
+  option_value: "False"
+
+- option_name: "auth_register_require_recaptcha"
+  option_value: "False"
+
+- option_name: "auth_retrieve_username_require_recaptcha"
+  option_value: "False"
+
+- option_name: "auth_retrieve_password_require_recaptcha"
+  option_value: "False"
+
+- option_name: "recaptcha_publickey"
+  option_value: ""
+
+- option_name: "recaptcha_privatekey"
+  option_value: ""
+ 
+- option_name: "recaptcha_options"
+  option_value: "theme:'clean'"
+  
+- option_name: "use_janrain"
+  option_value: "False"
+
+- option_name: "registros_iniciales"
+  option_value: "True"
+
+- option_name: "message_onregister"
+  option_value: "True"
+
+- option_name: "message_onvalidation"
+  option_value: "True"
+
+- option_name: "compress_css_files"
+  option_value: "True"
+
+- option_name: "compress_js_files"
+  option_value: "True"
+
+- option_name: "cssclass_icon_edit"
+  option_value: "glyphicon glyphicon-pencil"
+
+- option_name: "cssclass_icon_return"
+  option_value: "glyphicon glyphicon-chevron-left"
+
+- option_name: "cssclass_icon_remove"
+  option_value: "glyphicon glyphicon-trash"
+
+- option_name: "cssclass_button_small"
+  option_value: "btn btn-sm"
+
+- option_name: "cssclass_button_extrasmall"
+  option_value: "btn btn-xs"
+
+- option_name: "cssclass_button_warning"
+  option_value: "btn-warning"
+
+- option_name: "cssclass_button_danger"
+  option_value: "btn-danger"
+
+
+eventtypes:
+
+- logtypekey: "ADMIN_ALERT"
+  friendlyname: "Admin Alert"
+  description: ""
+  cssclass: "AdminAlert" 
+
+- logtypekey: "AUTHENTICATION_UPDATED"
+  friendlyname: "Authentication system updated"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "AUTHENTICATION_USER_CREATED"
+  friendlyname: "User authentication added"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "AUTHENTICATION_USER_DELETED"
+  friendlyname: "User authentication deleted"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "AUTHENTICATION_USER_UPDATED"
+  friendlyname: "User authentication updated"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "CACHE_DEPENDENCYCHANGED"
+  friendlyname: "Cache Item Dependency Changed"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "CACHE_ERROR"
+  friendlyname: "Cache Error"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "CACHE_EXPIRED"
+  friendlyname: "Cache Item Expired"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "CACHE_OVERFLOW"
+  friendlyname: "Cache Item Overflow"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "CACHE_REFRESH"
+  friendlyname: "Cache Refresh"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "CACHE_REMOVED"
+  friendlyname: "Cache Item Removed"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "CACHE_UNDERUSED"
+  friendlyname: "Cache Item Underused"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "DEBUG"
+  friendlyname: "Debug Info"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "MODULE_CREATED"
+  friendlyname: "Module created"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+  
+- logtypekey: "MODULE_DELETED"
+  friendlyname: "Module deleted"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+  
+- logtypekey: "MODULE_UPDATED"
+  friendlyname: "Module updated"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+  
+- logtypekey: "MODULEPERMISSION_CREATED"
+  friendlyname: "Module permission created"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+  
+- logtypekey: "MODULEPERMISSION_DELETED"
+  friendlyname: "Module permission deleted"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+  
+- logtypekey: "MODULEPERMISSION_UPDATED"
+  friendlyname: "Module permission updated"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+  
+- logtypekey: "GENERAL_EXCEPTION"
+  friendlyname: "General Exception"
+  description: ""
+  cssclass: "Exception" 
+
+- logtypekey: "HOST_ALERT"
+  friendlyname: "Host Alert"
+  description: ""
+  cssclass: "HostAlert" 
+
+- logtypekey: "HOST_SETTING_CREATED"
+  friendlyname: "Host setting created"
+  description: ""
+  cssclass: "HostAlert" 
+
+- logtypekey: "HOST_SETTING_DELETED"
+  friendlyname: "Host setting deleted"
+  description: ""
+  cssclass: "HostAlert" 
+
+- logtypekey: "HOST_SETTING_UPDATED"
+  friendlyname: "Host setting updated"
+  description: ""
+  cssclass: "HostAlert" 
+
+- logtypekey: "HOST_SQL_EXECUTED"
+  friendlyname: "SQL Query Executed"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "LOG_NOTIFICATION_FAILURE"
+  friendlyname: "Log Notification Failure"
+  description: ""
+  cssclass: "OperationFailure" 
+
+- logtypekey: "LOGIN_FAILURE"
+  friendlyname: "Login Failure"
+  description: ""
+  cssclass: "OperationFailure" 
+
+- logtypekey: "LOGIN_SUCCESS"
+  friendlyname: "Login Success"
+  description: ""
+  cssclass: "OperationSuccess" 
+
+- logtypekey: "LOGOUT_SUCCESS"
+  friendlyname: "Logout Success"
+  description: ""
+  cssclass: "OperationSuccess" 
+
+- logtypekey: "LOGIN_SUPERUSER"
+  friendlyname: "Login - Superuser"
+  description: ""
+  cssclass: "OperationSuccess" 
+
+- logtypekey: "LOGIN_USERLOCKEDOUT"
+  friendlyname: "User Locked Out"
+  description: ""
+  cssclass: "OperationFailure" 
+
+- logtypekey: "LOGIN_USERNOTAPPROVED"
+  friendlyname: "User Not Approved"
+  description: ""
+  cssclass: "OperationFailure" 
+
+- logtypekey: "MODULE_CREATED"
+  friendlyname: "Module Created"
+  description: ""
+  cssclass: "ItemCreated" 
+
+- logtypekey: "MODULE_DELETED"
+  friendlyname: ";Module Deleted"
+  description: ""
+  cssclass: "ItemDeleted" 
+
+- logtypekey: "MODULE_LOAD_EXCEPTION"
+  friendlyname: "Module Load Exception"
+  description: ""
+  cssclass: "Exception" 
+
+- logtypekey: "MODULE_RESTORED"
+  friendlyname: "Module Restored"
+  description: ""
+  cssclass: "ItemUpdated" 
+
+- logtypekey: "MODULE_SENT_TO_RECYCLE_BIN"
+  friendlyname: "Module Sent to Recycle Bin"
+  description: ""
+  cssclass: "ItemDeleted" 
+
+- logtypekey: "MODULE_SETTING_CREATED"
+  friendlyname: "Module setting created"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "MODULE_SETTING_DELETED"
+  friendlyname: "Module setting deleted"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "MODULE_SETTING_UPDATED"
+  friendlyname: "Module setting updated"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "MODULE_UPDATED"
+  friendlyname: "Module setting updated"
+  description: ""
+  cssclass: "ItemUpdated" 
+
+- logtypekey: "PACKAGE_CREATED"
+  friendlyname: "Package created"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "PACKAGE_DELETED"
+  friendlyname: "Package deleted"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "PACKAGE_UPDATED"
+  friendlyname: "Package updated"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "PAGE_LOAD_EXCEPTION"
+  friendlyname: "Page Load Exception"
+  description: ""
+  cssclass: "Exception" 
+
+- logtypekey: "PASSWORD_SENT_FAILURE"
+  friendlyname: "Password Sent Failure"
+  description: ""
+  cssclass: "Exception" 
+
+- logtypekey: "PASSWORD_SENT_SUCCESS"
+  friendlyname: "Password Sent Success"
+  description: ""
+  cssclass: "OperationSuccess" 
+
+- logtypekey: "PERMISSION_CREATED"
+  friendlyname: "Permission created"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "PERMISSION_DELETED"
+  friendlyname: "Permission deleted"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "PERMISSION_UPDATED"
+  friendlyname: "Permission updated"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "PORTAL_SETTING_CREATED"
+  friendlyname: "Portal setting created"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "PORTAL_SETTING_DELETED"
+  friendlyname: "Portal setting deleted"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "PORTAL_SETTING_UPDATED"
+  friendlyname: "Portal setting updated"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "PORTALINFO_CREATED"
+  friendlyname: "Portal info created"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "PORTALINFO_DELETED"
+  friendlyname: "Portal info deleted"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "PORTALINFO_UPDATED"
+  friendlyname: "Portal info updated"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "ROLE_CREATED"
+  friendlyname: "Role Created"
+  description: ""
+  cssclass: "ItemCreated" 
+
+- logtypekey: "ROLE_DELETED"
+  friendlyname: "Role Deleted"
+  description: ""
+  cssclass: "ItemDeleted" 
+
+- logtypekey: "ROLE_UPDATED"
+  friendlyname: "Role Updated"
+  description: ""
+  cssclass: "ItemUpdated" 
+
+- logtypekey: "SCHEDULE_CREATED"
+  friendlyname: "Schedule created"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "SCHEDULE_DELETED"
+  friendlyname: "Schedule deleted"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "SCHEDULE_FIRED_FROM_EVENT"
+  friendlyname: "Event Schedule Started"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "SCHEDULE_UPDATED"
+  friendlyname: "Scheduler updated"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "SCHEDULER_EVENT_COMPLETED"
+  friendlyname: "Scheduler Event Completed"
+  description: ""
+  cssclass: "OperationSuccess" 
+
+- logtypekey: "SCHEDULER_EVENT_FAILURE"
+  friendlyname: "Scheduler failure"
+  description: ""
+  cssclass: "OperationFailure" 
+
+- logtypekey: "SCHEDULER_EVENT_PROGRESSING"
+  friendlyname: "Scheduler Event Progressing"
+  description: ""
+  cssclass: "OperationSuccess" 
+
+- logtypekey: "SCHEDULER_EVENT_STARTED"
+  friendlyname: "Scheduler Event Started"
+  description: ""
+  cssclass: "OperationSuccess" 
+
+- logtypekey: "SCHEDULER_EXCEPTION"
+  friendlyname: "Scheduler Exception"
+  description: ""
+  cssclass: "Exception" 
+
+- logtypekey: "SCHEDULER_SHUTTING_DOWN"
+  friendlyname: "Scheduler Shutting Down"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "SCHEDULER_STARTED"
+  friendlyname: "Scheduler Started"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "SCHEDULER_STOPPED"
+  friendlyname: "Scheduler Stopped"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "SEARCH_INDEXER_EXCEPTION"
+  friendlyname: "Search Indexer Exception"
+  description: ""
+  cssclass: "Exception" 
+
+- logtypekey: "SKINPACKAGE_CREATED"
+  friendlyname: "Skin package created"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "SKINPACKAGE_DELETED"
+  friendlyname: "Skin package deleted"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "SKINPACKAGE_UPDATED"
+  friendlyname: "Skin package updated"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "PAGE_CREATED"
+  friendlyname: "Page created"
+  description: ""
+  cssclass: "ItemCreated" 
+
+- logtypekey: "PAGE_DELETED"
+  friendlyname: "Page deleted"
+  description: ""
+  cssclass: "ItemDeleted" 
+
+- logtypekey: "PAGE_ORDER_UPDATED"
+  friendlyname: "Page order updated"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "PAGE_RESTORED"
+  friendlyname: "Page Restored"
+  description: ""
+  cssclass: "ItemUpdated" 
+
+- logtypekey: "PAGE_SENT_TO_RECYCLE_BIN"
+  friendlyname: "Page Sent to Recycle Bin"
+  description: ""
+  cssclass: "ItemDeleted" 
+
+- logtypekey: "PAGE_UPDATED"
+  friendlyname: "Page updated"
+  description: ""
+  cssclass: "ItemUpdated" 
+
+- logtypekey: "PAGEMODULE_CREATED"
+  friendlyname: "Page module created"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "PAGEMODULE_DELETED"
+  friendlyname: "Page module deleted"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "PAGEMODULE_SETTING_CREATED"
+  friendlyname: "Page module setting created"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "PAGEMODULE_SETTING_DELETED"
+  friendlyname: "Page module setting deleted"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "PAGEMODULE_SETTING_UPDATED"
+  friendlyname: "Page module setting updated"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "PAGEMODULE_UPDATED"
+  friendlyname: "Page module updated"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "PAGEPERMISSION_CREATED"
+  friendlyname: "Page permission created"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "PAGEPERMISSION_DELETED"
+  friendlyname: "Page permission deleted"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "PAGEPERMISSION_UPDATED"
+  friendlyname: "Page permission updated"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+
+- logtypekey: "USER_CREATED"
+  friendlyname: "New User"
+  description: ""
+  cssclass: "ItemCreated" 
+
+- logtypekey: "USER_DELETED"
+  friendlyname: "User Deleted"
+  description: ""
+  cssclass: "ItemDeleted" 
+
+- logtypekey: "USER_IMPERSONATED"
+  friendlyname: "User Impersonated"
+  description: ""
+  cssclass: "OperationSuccess" 
+
+- logtypekey: "USER_REMOVED"
+  friendlyname: "User Deleted"
+  description: ""
+  cssclass: "ItemDeleted" 
+
+- logtypekey: "USER_RESTORED"
+  friendlyname: "User Deleted"
+  description: ""
+  cssclass: "ItemUpdated" 
+
+- logtypekey: "USER_ROLE_CREATED"
+  friendlyname: "User Role Created"
+  description: ""
+  cssclass: "ItemCreated" 
+
+- logtypekey: "USER_ROLE_DELETED"
+  friendlyname: "User Role Deleted"
+  description: ""
+  cssclass: "ItemDeleted" 
+
+- logtypekey: "USER_ROLE_UPDATED"
+  friendlyname: "User Role Updated"
+  description: ""
+  cssclass: "ItemUpdated" 
+
+- logtypekey: "USER_UPDATED"
+  friendlyname: "User updated"
+  description: ""
+  cssclass: "GeneralAdminOperation" 
+ 
+eventconfigs:
+
+- logtypekey: "ADMIN_ALERT"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "AUTHENTICATION_UPDATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "AUTHENTICATION_USER_CREATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "AUTHENTICATION_USER_DELETED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "AUTHENTICATION_USER_UPDATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "CACHE_DEPENDENCYCHANGED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "CACHE_ERROR"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "CACHE_EXPIRED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "CACHE_OVERFLOW"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "CACHE_REFRESH"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "CACHE_REMOVED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "CACHE_UNDERUSED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "DEBUG"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "MODULE_CREATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "MODULE_DELETED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "MODULE_UPDATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "MODULEPERMISSION_CREATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "MODULEPERMISSION_DELETED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "MODULEPERMISSION_UPDATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+  
+- logtypekey: "GENERAL_EXCEPTION"
+  keepmostrecent: 100
+  loggingisactive: "True"
+
+- logtypekey: "HOST_ALERT"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "HOST_SETTING_CREATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "HOST_SETTING_DELETED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "HOST_SETTING_UPDATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "HOST_SQL_EXECUTED"
+  keepmostrecent: -1
+  loggingisactive: "True"
+
+- logtypekey: "LOG_NOTIFICATION_FAILURE"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "LOGIN_FAILURE"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "LOGIN_SUCCESS"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "LOGOUT_SUCCESS"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "LOGIN_SUPERUSER"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "LOGIN_USERLOCKEDOUT"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "LOGIN_USERNOTAPPROVED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "MODULE_CREATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "MODULE_DELETED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "MODULE_LOAD_EXCEPTION"
+  keepmostrecent: 100
+  loggingisactive: "True"
+
+- logtypekey: "MODULE_RESTORED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "MODULE_SENT_TO_RECYCLE_BIN"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "MODULE_SETTING_CREATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "MODULE_SETTING_DELETED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "MODULE_SETTING_UPDATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "MODULE_UPDATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PACKAGE_CREATED"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "PACKAGE_DELETED"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "PACKAGE_UPDATED"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "PAGE_LOAD_EXCEPTION"
+  keepmostrecent: 100
+  loggingisactive: "True"
+
+- logtypekey: "PASSWORD_SENT_FAILURE"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "PASSWORD_SENT_SUCCESS"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "PERMISSION_CREATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PERMISSION_DELETED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PERMISSION_UPDATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PORTAL_SETTING_CREATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PORTAL_SETTING_DELETED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PORTAL_SETTING_UPDATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PORTALINFO_CREATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PORTALINFO_DELETED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PORTALINFO_UPDATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "ROLE_CREATED"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "ROLE_DELETED"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "ROLE_UPDATED"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "SCHEDULE_CREATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "SCHEDULE_DELETED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "SCHEDULE_FIRED_FROM_EVENT"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "SCHEDULE_UPDATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "SCHEDULER_EVENT_COMPLETED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "SCHEDULER_EVENT_FAILURE"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "SCHEDULER_EVENT_PROGRESSING"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "SCHEDULER_EVENT_STARTED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "SCHEDULER_EXCEPTION"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "SCHEDULER_SHUTTING_DOWN"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "SCHEDULER_STARTED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "SCHEDULER_STOPPED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "SEARCH_INDEXER_EXCEPTION"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "SKINPACKAGE_CREATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "SKINPACKAGE_DELETED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "SKINPACKAGE_UPDATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PAGE_CREATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PAGE_DELETED"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "PAGE_ORDER_UPDATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PAGE_RESTORED"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "PAGE_SENT_TO_RECYCLE_BIN"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PAGE_UPDATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PAGEMODULE_CREATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PAGEMODULE_DELETED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PAGEMODULE_SETTING_CREATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PAGEMODULE_SETTING_DELETED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PAGEMODULE_SETTING_UPDATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PAGEMODULE_UPDATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PAGEPERMISSION_CREATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PAGEPERMISSION_DELETED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "PAGEPERMISSION_UPDATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "USER_CREATED"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "USER_DELETED"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "USER_IMPERSONATED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "USER_REMOVED"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "USER_RESTORED"
+  keepmostrecent: 0
+  loggingisactive: "False"
+
+- logtypekey: "USER_ROLE_CREATED"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "USER_ROLE_DELETED"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "USER_ROLE_UPDATED"
+  keepmostrecent: 10
+  loggingisactive: "True"
+
+- logtypekey: "USER_UPDATED"
+  keepmostrecent: 10
+  loggingisactive: "True"
+ 

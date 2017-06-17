@@ -1,0 +1,340 @@
+<script>
+    jQuery(document).ready(function(){
+        sv = '{{=settings.controlpanelvisibility}}'
+        if (sv == 'MIN') {
+            $("#controlpanel").toggle(false);
+        }
+        if (sv == 'MAX') {
+            $("#controlpanel").toggle(true);
+        }
+        pageid = '{{=pageid}}';
+        document.getElementById('txtpageid').value = pageid;
+        jQuery('body').css('padding-top', '0px');
+    });
+    function confirmacion(recno){
+        pageid = '{{=pageid}}';
+        var answer = confirm("Eliminar Pagina? " + pageid)
+        if (answer) {
+            ajax("{{=URL(c='admin',f='page_delete',vars={'pageid':pageid})}}", [], ':eval');
+        }
+    };
+    function confirma(){
+        var answer = confirm("{{=T('Delete all unauthorized users?')}}")
+        if (answer) {
+            ajax("{{=URL(c='admin',f='delete_unauthorized_users',user_signature=True)}}", [], ':eval');
+        }
+    };
+    function deletemodule(recno){
+        pageid = '{{=pageid}}';
+        var answer = confirm("Eliminar módulo? " + recno)
+        if (answer) {
+            ajax("{{=URL(c='admin',f='pagemodule_delete')}}" + '?pagemoduleid=' + recno + '&pageid=' + pageid, [], ':eval');
+        }
+    };
+    
+    function toglecontrolpanel(){
+        $("#controlpanel").toggle("slow");
+        ajax("{{=URL(c='controlpanel',f='togglecpanel')}}", []);
+    };
+    function toglecontrolpanelmode(t){
+        document.getElementById('txtcpmode').value = t;
+        document.getElementById('optmode0').visible = false;
+        document.getElementById('optmode1').visible = false;
+        document.getElementById('optmode2').visible = false;
+        ajax("{{=URL(c='controlpanel',f='togglecpanelmode')}}", ['txtcpmode'], ':eval');
+    };
+    function addmodule(){
+        ajax("{{=URL(c='controlpanel',f='add_module')}}", ['chkcopysettings', 'listmodules', 'listpanes', 'txtpageid', 'txttitle', 'cbopermissions', 'cboposition', 'cboalignment', 'optmoduletype', 'listpagemodules'], ':eval');
+    };
+    function add_existing_module(mode){
+        if (mode == "1") {
+            //* jQuery(listmodules).remove(); *//
+            jQuery('select[name=listpages]').css('display', '');
+            jQuery('select[name=listpagemodules]').css('display', '');
+            jQuery('select[name=listmodules]').css('display', 'None');
+            jQuery('label[for=chkcopysettings]').css('display', '');
+        }
+        else {
+            jQuery('select[name=listpages]').css('display', 'None');
+            jQuery('select[name=listpagemodules]').css('display', 'None');
+            jQuery('select[name=listmodules]').css('display', '');
+            jQuery('label[for=chkcopysettings]').css('display', 'None');
+            ajax("{{=URL(c='controlpanel',f='pagemodules_get/' + str(pageid))}}", ['listpages'], ':eval');
+        }
+    };
+    function changed_pages(){
+    
+        ajax("{{=URL(c='controlpanel',f='pagemodules_get')}}", ['listpages'], ':eval');
+        
+    };
+</script>
+<div class="container-fluid">
+    <div class="row show-grid" style="box-shadow:5px 5px 9px #000000;">
+        <h5 class="text">
+            <div class="col-md-1" style="text-align:right;">
+                <strong>{{=T('Mode')}}:</strong>
+            </div>
+            <div class="col-md-5">
+                <input type="text" style="display:None" name="txtcpmode" id = "txtcpmode"><input type="text" style="display:None" value = "{{=pageid}}" name="txtpageid" id = "txtpageid">
+                <label class="checkbox-inline">
+                    <input type="checkbox" onclick="toglecontrolpanelmode('VIEW')" {{="checked='checked'"  if str(settings.controlpanelmode)=='VIEW'  else ""}}  value="VIEW" name="optmode" id="optmode0"><span>{{=T('View')}}</span>&nbsp;
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" onclick="toglecontrolpanelmode('EDIT')" {{="checked='checked'"  if str(settings.controlpanelmode)=='EDIT'  else ""}}  value="EDIT" name="optmode" id="optmode1"><span>{{=T('Edit')}}</span>&nbsp;
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" onclick="toglecontrolpanelmode('DESIGN')" {{="checked='checked'"  if str(settings.controlpanelmode)=='DESIGN'  else ""}}  value="DESIGN" name="optmode" id="optmode2"><span>{{=T('Design')}}</span>
+                </label>
+            </div>
+            <div class="col-md6">
+                <span class="pull-right"><strong>{{=T('Show Control Panel')}} ?</strong><a href="javascript:void(0)" id="IconBar_cmdVisibility"><img onclick='toglecontrolpanel();' style="border-width:0px;" alt="Minimize" src="{{=URL('static','images/controlpanel/expand.gif')}}"></a>&nbsp;</span>
+            </div>
+        </h5>
+    </div>
+    <div id="controlpanel" class="row show-grid">
+        <div class="row show-grid">
+            <div class="col-md-3" align="center">
+                <h5>{{=T('Page Functions')}}</h5>
+            </div>
+            <div class="col-md-6" align="center">
+                <h6>{{=T('Add Module')}}:&nbsp;&nbsp;&nbsp;&nbsp;<input name="optmoduletype" type="radio" onclick="add_existing_module('0');" checked="checked" value="0">{{=T('New')}}&nbsp;&nbsp;<input name="optmoduletype" type="radio" onclick="add_existing_module('1');" value="1">{{=T('Existing')}}
+                    {{=ddlpages}}
+                    <label style="display:None" for="chkcopysettings">
+                        {{=T('Copy settings')}}<input id ="chkcopysettings" name="chkcopysettings" type="checkbox" checked><input id ="chkcopysettings" name="chkcopysettings" type="text" value="F" style="display:None">
+                    </label>
+                    </label></h6>
+            </div>
+            <div class="col-md-3" align="center">
+                <h5>{{=T('Common Tasks')}}</h5>
+            </div>
+        </div>
+        <div class="row show-grid">
+            <div class="col-md-3" align="center" style="box-shadow:5px 5px 7px #000000; ">
+                <br/>
+                <div>
+                    <div class="btn-group col-md-12">
+                        <div class="btn-group col-md-4">
+                            <a href="{{=URL(c='admin',f='add_page',args=settings.currentpage)}}">
+                                <button type="button" class="btn-sm  btn btn-labeled btn-success">
+                                    <span class="btn-label"><i class="glyphicon glyphicon-plus-sign"></i></span>{{=T('Add')}}
+                                </button>
+                            </a>
+                        </div>
+                        <div class="btn-group col-md-4">
+                            <a href="{{=URL(c='admin',f='edit_page',args=settings.currentpage)}}"
+                                <button type="button" class="btn-sm btn btn-labeled btn-primary {{="disabled"  if not can_page_be_deleted else ""}}">
+                                    <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>{{=T('Edit')}}
+                                </button>
+                            </a>
+                        </div>
+                        <div class="btn-group col-md-4">
+                            {{if can_page_be_deleted:}}<a href="javascript:void(0)" onclick='confirmacion("{{=str(pageid)}}");'
+                                <button type="button" class="btn-sm btn btn-labeled btn-danger">
+                                    <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>{{=T('Delete')}}
+                                </button>
+                            </a>
+                            {{else:}}
+                                <button type="button" class="btn-sm btn btn-labeled btn-danger disabled">
+                                    <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>{{=T('Delete')}}
+                                </button>							
+                            {{pass}}
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="btn-group col-md-12">
+                        <div class="btn-group col-md-4">
+                            {{if can_copy_page:}}<a href="{{=URL(c='admin',f='copy_page',args=settings.currentpage)}}">
+                                <button type="button" class="btn-sm btn btn-labeled btn-primary">
+                                    <span class="btn-label"><i class="glyphicon glyphicon-unchecked"></i></span>{{=T('Copy')}}
+                                </button>
+                            </a>
+                            {{else:}}
+                                <button type="button" class="btn-sm btn btn-labeled btn-primary disabled">
+                                    <span class="btn-label"><i class="glyphicon glyphicon-unchecked"></i></span>{{=T('Copy')}}
+                                </button>
+                            {{pass}}
+                        </div>
+                        <div class="btn-group col-md-4">
+                            {{if can_page_be_exported:}}<a href="{{=URL(c='admin',f='export_page',args=settings.currentpage)}}">
+                                <button type="button" class="btn-sm btn btn-labeled btn-primary">
+                                    <span class="btn-label"><i class="glyphicon glyphicon-export"></i></span>{{=T('Export')}}
+                                </button>
+                            </a>
+                            {{else:}}<a href="#">
+                                <button type="button" class="btn-sm btn btn-labeled btn-primary">
+                                    <span class="btn-label"><i class="glyphicon glyphicon-export"></i></span>{{=T('Export')}}
+                                </button>
+                            </a>
+                            {{pass}} 
+                        </div>
+                        <div class="btn-group col-md-4">
+                            <a href="{{=URL(c='admin',f='edit_page',args=settings.currentpage)}}">
+                                <button type="button" class="btn-sm btn btn-labeled btn-primary">
+                                    <span class="btn-label"><i class="glyphicon glyphicon-import"></i></span>{{=T('Import')}}
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+            </div>
+            <div class="col-md-6" style="">
+                <div class="row ">
+                    <div class="col-md-6 form-inline">
+                    	<div class="row">
+							<div class="col-md-3" style="text-align:right;">
+		                        <label for="listmodules">
+		                            {{=T('Module')}}
+		                        </label>
+							</div>                        
+							<div class="col-md-9">
+								<select class="form-control" name='listmodules' id='listmodules'>
+									{{=ddlmodules}}
+		                        <select>
+								<select class="form-control" name="listpagemodules" {{="  disabled='True'" if not can_add_modules else ""}} id="listpagemodules" style="width: 185px;  display: None;">
+		                        </select>						                    		
+							</div>
+                    	</div>
+                    </div>
+                    <div class="col-md-6 form-inline">
+                    	<div class="row">
+                    		<div class="col-md-3" style="text-align:right;">
+		                        <label for="listpanes">
+		                            {{=T('Pane')}}
+		                        </label>
+	                   		</div>
+                    		<div class="col-md-9">
+                    			<select class="form-control"  name='listpanes'>
+								{{=panes_in_page}}
+	                    	</select>
+                    		</div>
+						</div>
+					</div>
+                </div>                
+				<div class="row">
+	                    <div class="col-md-6 form-inline">
+							<div class="row">
+								<div class="col-md-3" style="text-align:right;">
+			                        <label for="txttitle">
+			                            {{=T('Title')}}
+			                        </label>
+								</div>
+								<div class="col-md-9">
+									<input name = "txttitle" id="txttitle" type="text" class="form-control" style={{="disabled='True'" if not can_add_modules else ""}}>		
+								</div>
+							</div>	
+	                    </div>
+	                    <div class="col-md-6 form-inline">
+	                        <div class="row">
+	                        	<div class="col-md-3" style="text-align:right;">
+									<label for="cboposition">
+			                            {{=T('Insert')}}
+			                        </label>
+	                        	</div>
+		                       	<div class="col-md-9">
+			                        <select class="form-control" id="cboposition" {{="  disabled='True'" if not can_add_modules else ""}} class="form-control" style="width:150px;"  name="cboposition">
+			                            <option value="0">{{=T('Top')}}</option>
+			                            <option value="-1" selected="selected">{{=T('Bottom')}}</option>
+			                        </select>						                       		
+		                       	</div>
+	                        </div>
+							
+	                    </div>
+					</div>
+                <div class="row form-inline">
+                    <div class="col-md-6">
+						<div class="row">
+	                        <div class="col-md-3" style="text-align:right;">
+								<label for="txttitle">
+		                            {{=T('Visibility')}}
+		                        </label>
+							</div>
+							<div class="col-md-9">
+								<select class="form-control" {{="  disabled='True'" if not can_add_modules else ""}}>
+		                            <option value="0" selected="selected">{{=T('Same As Page')}}</option>
+		                            <option value="1">{{=T('Page Editors Only')}}</option>
+		                        </select>								
+							</div>	
+						</div>
+                    </div>
+                    <div class="col-md-6 form-inline">
+						<div class="row">
+	                        <div class="col-md-3" style="text-align:right;">
+                        
+								<label for="cboalignment">
+		                            {{=T('Align')}}
+		                        </label>
+							</div>
+							<div class="col-md-9">
+		                        <select class="form-control" {{="  disabled='True'" if not can_add_modules else ""}} id="cboalignment" class="form-control" name="cboalignment">
+		                            <option value="left" selected="selected">{{=T('Left')}}</option>
+		                            <option value="center">{{=T('Center')}}</option>
+		                            <option value="right">{{=T('Right')}}</option>
+		                            <option value="">{{=T('Not Specified')}}</option>
+		                        </select>
+		                        {{if can_add_modules:}}<a style="width:75px; margin-top: 8px;margin-bottom: 8px;" class="btn btn-sm btn-success pull-right" onclick="addmodule();" href="javascript:void(0)"><i class="glyphicon glyphicon-plus icon-white"></i><strong>{{=T('Add')}} </strong></a>
+		                        {{else:}}<a style="width:75px; margin-top: 8px;margin-bottom: 8px" class="btn btn-sm btn-success disabled pull-right " href="#"><i class="glyphicon glyphicon-plus icon-white"></i><strong>{{=T('Add')}} </strong></a>
+		                        {{pass}} 													
+                    		</div>
+						</div>
+					</div>
+                </div>
+            </div>
+            <div class="col-md-3" align="center" style="box-shadow:5px 5px 7px #000000; ">
+                <br/>
+				<div>
+                    <div class="btn-group col-md-12"">
+                         <div class="btn-group col-md-4">
+							<a href="{{=URL(c='admin',f='site_settings')}}">								
+								<button type="button" class="btn-sm  btn btn-labeled btn-primary">
+                                    <span class="btn-label"><i class="glyphicon glyphicon-wrench"></i></span>{{=T('Settings')}}
+                                </button>
+	                        </a>						
+						</div>
+                         <div class="btn-group col-md-4">
+							<a href="{{=URL(c='admin',f='manage_users')}}">								
+								<button type="button" class="btn-sm  btn btn-labeled btn-primary">
+                                    <span class="btn-label"><i class="glyphicon glyphicon-user"></i></span>{{=T('Users')}}
+                                </button>
+	                        </a>						
+						</div>
+                         <div class="btn-group col-md-4">
+							<a href="{{=URL(c='admin',f='manage_groups')}}">								
+								<button type="button" class="btn-sm  btn btn-labeled btn-primary">
+                                    <span class="btn-label"><i class="glyphicon glyphicon-list-alt"></i></span>{{=T('Groups')}}
+                                </button>
+	                        </a>						
+						</div>
+                        
+                    </div>
+                </div>
+                <div>
+                    <div class="btn-group col-md-12">
+                        <div class="btn-group col-md-4">
+							<a href="{{=URL(c='appadmin',f='select',args='db',vars={'query':'db.plugin_ckeditor_upload.id>0'})}}">								
+								<button type="button" class="btn-sm  btn btn-labeled btn-primary">
+                                    <span class="btn-label"><i class="glyphicon glyphicon-th"></i></span>{{=T('Files')}}
+                                </button>
+	                        </a>						
+						</div>
+                        <div class="btn-group col-md-4">
+							<a href="http://www.pynuke.net/ayuda">								
+								<button type="button" class="btn-sm  btn btn-labeled btn-primary">
+                                    <span class="btn-label"><i class="glyphicon glyphicon-question-sign"></i></span>{{=T('Help')}}
+                                </button>
+	                        </a>						
+						</div>
+                        <div class="btn-group col-md-4">
+							<a href="http://www.pynuke.net/soluciones">								
+								<button type="button" class="btn-sm  btn btn-labeled btn-primary">
+                                    <span class="btn-label"><i class="glyphicon glyphicon-info-sign"></i></span>{{=T('Solutions')}}
+                                </button>
+	                        </a>						
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
